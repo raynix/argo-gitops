@@ -1,0 +1,52 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjob-backup
+  labels:
+    app: cronjob-backup
+spec:
+  schedule: 0 14 * * 0
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: cronjob-backup
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                    - amd64
+          securityContext:
+            runAsUser: 65534
+            runAsGroup: 65534
+          restartPolicy: Never
+          volumes:
+            - name: var-www
+              persistentVolumeClaim:
+                claimName: wordpress
+            - name: gcp-sa
+              secret:
+                secretName: backup-gcp-sa
+          containers:
+            - name: backup-tool
+              image: ghcr.io/raynix/backup:v0.21
+              command:
+                - /wordpress.sh
+                - $(DOMAIN)
+                - /wordpress
+                - /gcp/idyllic-depth-239301-8ede1c36924a.json
+                - raynix-melbourne-backup
+
+              envFrom:
+                - secretRef:
+                    name: wordpress-secret
+              volumeMounts:
+                - name: var-www
+                  mountPath: /wordpress
+                - name: gcp-sa
+                  mountPath: /gcp

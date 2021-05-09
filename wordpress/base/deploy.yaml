@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+      containers:
+        - name: wordpress
+          image: wordpress:php7.4-fpm-alpine
+          env:
+            - name: WORDPRESS_DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress-secret
+                  key: dbhost
+            - name: WORDPRESS_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress-secret
+                  key: dbname
+            - name: WORDPRESS_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress-secret
+                  key: dbuser
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress-secret
+                  key: dbpass
+            - name: WORDPRESS_TABLE_PREFIX
+              value: wp_
+          ports:
+            - containerPort: 9000
+          volumeMounts:
+            - name: php-config-volume
+              mountPath: /usr/local/etc/php/php.ini
+              subPath: php.ini
+            - name: var-www
+              mountPath: /var/www/html
+          resources:
+            requests:
+              cpu: 500m
+              memory: 300Mi
+        - name: nginx
+          image: nginx:stable
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: wordpress-nginx-config-volume
+              mountPath: /etc/nginx/conf.d
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+            - name: var-www
+              mountPath: /var/www/html
+          resources:
+            requests:
+              cpu: 200m
+              memory: 100Mi
+          livenessProbe:
+            httpGet:
+              path: /wp-login.php
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /wp-login.php
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+      volumes:
+        - name: nginx-config-volume
+          configMap:
+            name: nginx-config
+        - name: wordpress-nginx-config-volume
+          configMap:
+            name: wordpress-nginx-config
+        - name: php-config-volume
+          configMap:
+            name: php-config
+        - name: var-www
+          persistentVolumeClaim:
+            claimName: wordpress

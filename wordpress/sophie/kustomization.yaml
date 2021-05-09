@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: wordpress-sophix
+bases:
+  - ../base
+
+nameSuffix: -sophix
+commonLabels:
+  domain: sophie.raynix.info
+
+patchesStrategicMerge:
+  - patch.yaml
+
+images:
+  - name: ghcr.io/raynix/backup
+    newTag: v0.28
