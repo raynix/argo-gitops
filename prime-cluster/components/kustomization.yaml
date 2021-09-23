@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - sealed-secrets.yaml
   - reflector.yaml
+  - prometheus.yaml
