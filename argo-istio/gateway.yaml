@@ -13,7 +13,8 @@ spec:
         number: 443
         protocol: HTTPS
       tls:
-        mode: PASSTHROUGH
+        mode: SIMPLE
+        credentialName: awes-one-cert
     - hosts:
         - argo.awes.one
       port:
