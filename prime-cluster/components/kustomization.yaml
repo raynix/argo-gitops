@@ -5,3 +5,4 @@ resources:
   - sealed-secrets.yaml
   - reflector.yaml
   - prometheus.yaml
+  - cert-manager.yaml
