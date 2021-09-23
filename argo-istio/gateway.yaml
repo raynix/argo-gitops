@@ -6,20 +6,19 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-  - hosts:
-    - argo.awes.one
-    port:
-      name: https
-      number: 443
-      protocol: HTTPS
-    tls:
-      mode: SIMPLE
-      credentialName: awes-one-cert
-  - hosts:
-    - argo.awes.one
-    port:
-      name: http
-      number: 80
-      protocol: HTTP
-    tls:
-      httpsRedirect: true
+    - hosts:
+        - argo.awes.one
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: PASSTHROUGH
+    - hosts:
+        - argo.awes.one
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+      tls:
+        httpsRedirect: true

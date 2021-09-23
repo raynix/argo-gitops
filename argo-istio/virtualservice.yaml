@@ -4,10 +4,17 @@ metadata:
   name: argocd
 spec:
   gateways:
-  - argocd-gateway
+    - argocd-gateway
   hosts:
-  - argo.awes.one
-  http:
-  - route:
-    - destination:
-        host: argocd-server
+    - argo.awes.one
+  tls:
+    - match:
+        port: 443
+        sniHosts:
+          - argo.awes.one
+      route:
+        - destination:
+            host: argocd-server
+            port:
+              number: 443
+
