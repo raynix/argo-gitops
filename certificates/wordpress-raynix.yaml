@@ -1,0 +1,24 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wordpress-raynix
+  namespace: istio-system
+spec:
+  secretName: wordpress-raynix-cert
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+      - raynix.info
+  isCA: false
+  privateKey:
+    algorithm: RSA
+    size: 2048
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+    - raynix.info
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer

@@ -1,0 +1,26 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: awes-one
+  namespace: istio-system
+spec:
+  secretName: awes-one-cert
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+      - raynix.info
+  isCA: false
+  privateKey:
+    algorithm: RSA
+    size: 2048
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+    - awes.one
+    - grafana.awes.one
+    - argo.awes.one
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer

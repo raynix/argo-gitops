@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certificates
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: istio-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: certificates
+    repoURL: https://github.com/raynix/argo-gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true

@@ -6,3 +6,4 @@ resources:
   - reflector.yaml
   - prometheus.yaml
   - cert-manager.yaml
+  - certificates.yaml
