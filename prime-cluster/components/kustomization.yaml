@@ -9,3 +9,4 @@ resources:
   - cert-manager.yaml
   - certificates.yaml
   - grafana.yaml
+  - kube-state-metrics.yaml
