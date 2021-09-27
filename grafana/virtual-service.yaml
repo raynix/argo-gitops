@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana-vs
+spec:
+  gateways:
+  - grafana-gateway
+  hosts:
+  - grafana.awes.one
+  http:
+  - route:
+    - destination:
+        host: grafana
