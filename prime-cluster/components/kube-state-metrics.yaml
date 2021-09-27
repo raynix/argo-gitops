@@ -11,26 +11,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: jsonnet/kube-state-metrics
-    repoURL: https://github.com/kubernetes/kube-state-metrics.git
-    targetRevision: v2.2.0
-    directory:
-      jsonnet:
-        extVars:
-          - name: name
-            value: $ARGOCD_APP_NAME
-          - name: namespace
-            value: $ARGOCD_APP_NAMESPACE
-          - name: version
-            value: $ARGOCD_APP_REVISION
-          - name: image
-            value: quay.io/coreos/kube-state-metrics
-        tlas:
-          - name: ns
-            value: $ARGOCD_APP_NAMESPACE
-        libs:
-          - vendor
+    chart: kube-state-metrics
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 3.5.1
 
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - CreateNamespace=true
