@@ -8,3 +8,4 @@ resources:
   - prometheus.yaml
   - cert-manager.yaml
   - certificates.yaml
+  - grafana.yaml
