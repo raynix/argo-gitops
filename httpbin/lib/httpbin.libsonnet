@@ -45,5 +45,6 @@
 
     service: $.util.serviceFor(self.deployment),
     gateway: mytools.gatewayFor(c.name, 'awes-one', ["httpbin.awes.one"]),
+    vs: mytools.virtualServiceFor(c.name, c.name, ["httpbin.awes.one"]),
   },
 }

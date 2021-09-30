@@ -38,6 +38,34 @@ local mytools(k) = {
             },
 
         },
+    virtualServiceFor(gateway, service, hosts=[])::
+        {
+            apiVersion: 'networking.istio.io/v1beta1',
+            kind: 'VirtualService',
+            metadata: {
+                name: gateway,
+            },
+            spec: {
+                gateways: [
+                    gateway,
+                ],
+
+                hosts: hosts,
+                http: [
+                    {
+                        route: [
+                            {
+                                destination: {
+                                    host: service
+                                },
+                            },
+                        ],
+                    },
+
+                ],
+            },
+        },
+
 };
 
 mytools((import 'grafana.libsonnet')) + {
