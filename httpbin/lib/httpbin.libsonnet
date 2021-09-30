@@ -1,5 +1,4 @@
 (import "ksonnet-util/kausal.libsonnet") +
-(import "github.com/jsonnet-libs/istio-libsonnet/1.8/main.libsonnet") +
 {
   _config:: {
     httpbin: {
@@ -16,6 +15,7 @@
   local gateway = $.networking.v1beta1.gateway,
   local vs = $.networking.v1beta1.virtualService,
   local c = $._config.httpbin,
+  local mytools = (import "mytools.libsonnet"),
 
   httpbin: {
     deployment: deployment.new(
@@ -44,5 +44,6 @@
       }),
 
     service: $.util.serviceFor(self.deployment),
+    gateway: mytools.gatewayFor(c.name, 'awes-one', ["httpbin.awes.one"]),
   },
 }
