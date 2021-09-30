@@ -10,3 +10,4 @@ resources:
   - certificates.yaml
   - grafana.yaml
   - kube-state-metrics.yaml
+  - httpbin.yaml
