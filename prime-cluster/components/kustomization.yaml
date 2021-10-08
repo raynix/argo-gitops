@@ -11,3 +11,4 @@ resources:
   - grafana.yaml
   - kube-state-metrics.yaml
   - httpbin.yaml
+  - saus.yaml
