@@ -12,3 +12,4 @@ resources:
   - kube-state-metrics.yaml
   - httpbin.yaml
   - saus.yaml
+  - kubecraft.yaml

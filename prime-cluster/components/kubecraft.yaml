@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubecraft
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: kubecraft
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize/mc.awes.one
+    repoURL: https://github.com/raynix/kubecraft.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
