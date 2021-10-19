@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - argo-istio.yaml
+  - csi-driver-nfs.yaml
   - sealed-secrets.yaml
   - reflector.yaml
   - prometheus.yaml
