@@ -11,9 +11,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: csi-driver-nfs/csi-driver-nfs
+    chart: csi-driver-nfs
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
-    targetRevision: v3.0.0
+    targetRevision: latest
 
   syncPolicy:
     automated:
