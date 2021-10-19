@@ -13,7 +13,7 @@ spec:
   source:
     chart: csi-driver-nfs
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
-    targetRevision: latest
+    targetRevision: v3.0.0
 
   syncPolicy:
     automated:
