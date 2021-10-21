@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress-dote
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: wordpress-dote
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize/dote.blog
+    repoURL: https://github.com/raynix/kubepress.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true

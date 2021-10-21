@@ -15,3 +15,4 @@ resources:
   - saus.yaml
   - kubecraft.yaml
   - wordpress-sophie.yaml
+  - wordpress-dote.yaml
