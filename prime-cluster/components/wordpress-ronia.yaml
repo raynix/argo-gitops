@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress-ronia
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: wordpress-ronia
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize/ronia.raynix.info
+    repoURL: https://github.com/raynix/kubepress.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true

@@ -16,3 +16,4 @@ resources:
   - kubecraft.yaml
   - wordpress-sophie.yaml
   - wordpress-dote.yaml
+  - wordpress-ronia.yaml
