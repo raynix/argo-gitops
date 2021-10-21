@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress-sophie
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: wordpress-sophie
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize/sophie.raynix.info
+    repoURL: https://github.com/raynix/kubepress.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
