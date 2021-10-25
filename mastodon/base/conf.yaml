@@ -1,0 +1,7 @@
+varReference:
+  - path: spec/hosts
+    kind: VirtualService
+  - path: spec/servers/hosts
+    kind: Gateway
+  - path: spec/servers/tls/credentialName
+    kind: Gateway

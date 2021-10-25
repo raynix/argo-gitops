@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob-backup
+  labels:
+    app: cronjob-backup
+spec:
+  schedule: 0 16 * * 0
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: cronjob-backup
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                    - amd64
+          securityContext:
+            fsGroup: 991
+            runAsGroup: 991
+            runAsUser: 991
+          restartPolicy: Never
+          volumes:
+            - name: gcp-sa
+              secret:
+                secretName: backup-gcp-sa
+          containers:
+            - name: backup-tool
+              image: ghcr.io/raynix/backup:v0.21
+              command:
+                - /bin/bash
+                - -c
+                - |
+                  until curl -fsI http://localhost:15021/healthz/ready; do
+                    echo 'Waiting for Sidecar...'
+                    sleep 1
+                  done
+                  /mastodon.sh $(DOMAIN) /gcp/idyllic-depth-239301-8ede1c36924a.json raynix-melbourne-backup
+                  curl -fsI -X POST http://localhost:15020/quitquitquit
+
+              envFrom:
+                - secretRef:
+                    name: mastodon
+              volumeMounts:
+                - name: gcp-sa
+                  mountPath: /gcp

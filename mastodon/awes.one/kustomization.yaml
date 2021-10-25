@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mastodon-awes-one
+bases:
+  - ../base
+
+commonAnnotations:
+  domain: awes.one
+  cert: awes-one-cert
+
+resources:
+  - ns.yaml
+  - pv.yaml
+  - sealed-secret-mastodon.yaml
+
+images:
+  - name: tootsuite/mastodon
+    newTag: v3.4.1
+  - name: ghcr.io/raynix/backup
+    newTag: v0.29

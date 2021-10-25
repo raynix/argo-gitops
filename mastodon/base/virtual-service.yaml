@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: mastodon-vs
+spec:
+  gateways:
+    - mastodon-gateway
+  hosts:
+    - $(DOMAIN)
+  http:
+    - name: streaming
+      match:
+        - uri:
+            prefix: /api/v1/streaming
+      route:
+        - destination:
+            host: mastodon-streaming
+    - name: web
+      route:
+        - destination:
+            host: mastodon-web

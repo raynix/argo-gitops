@@ -1,0 +1,64 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mastodon-db-migrate
+  labels:
+    app: mastodon-db-migrate
+spec:
+  template:
+    metadata:
+      name: mastodon-db-migrate
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+      restartPolicy: Never
+      volumes:
+        - name: flags
+          emptyDir: {}
+      containers:
+        - name: curl
+          image: curlimages/curl:7.78.0
+          command:
+            - /bin/sh
+            - -c
+            - |
+              rm -rf /tmp/flags/*
+              until curl -fsI http://localhost:15021/healthz/ready; do
+                echo 'Waiting for Sidecar...'
+                sleep 1
+              done
+              touch /tmp/flags/istio-proxy-ready
+              until [ -f /tmp/flags/done ]; do
+                echo 'Waiting for the job to finish...'
+                sleep 1
+              done
+              curl -fsI -X POST http://localhost:15020/quitquitquit
+          volumeMounts:
+            - name: flags
+              mountPath: /tmp/flags
+        - name: mastodon-db-migrate
+          image: "tootsuite/mastodon:v3.3.0"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              until [[ -f /tmp/flags/istio-proxy-ready ]]; do
+                echo 'Waiting for Sidecar...'
+                sleep 1
+              done
+              bundle exec rails db:migrate
+              touch /tmp/flags/done
+          envFrom:
+            - secretRef:
+                name: mastodon
+          volumeMounts:
+            - name: flags
+              mountPath: /tmp/flags
