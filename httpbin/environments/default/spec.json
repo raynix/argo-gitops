@@ -6,7 +6,7 @@
   },
   "spec": {
     "apiServer": "",
-    "namespace": "default",
+    "namespace": "httpbin",
     "resourceDefaults": {},
     "expectVersions": {}
   }
