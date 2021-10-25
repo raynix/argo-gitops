@@ -10,6 +10,7 @@
     }
   },
 
+  local namespace = $.core.v1.namespace,
   local deployment = $.apps.v1.deployment,
   local container = $.core.v1.container,
   local port = $.core.v1.containerPort,
@@ -19,6 +20,8 @@
   local mytools = (import "mytools.libsonnet"),
 
   httpbin: {
+    namespace: namespace.new(c.name)
+    + namespace.mixin.metadata.withAnnotations({ "istio-injection": "enabled"}),
     deployment: deployment.new(
       name=c.name,
       replicas=1,
