@@ -21,7 +21,7 @@
 
   httpbin: {
     namespace: namespace.new(c.name)
-    + namespace.mixin.metadata.withAnnotations({ "istio-injection": "enabled"}),
+    + namespace.mixin.metadata.withLabels({ "istio.io/rev": "canary"}),
     deployment: deployment.new(
       name=c.name,
       replicas=1,
