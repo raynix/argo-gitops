@@ -4,3 +4,6 @@ namespace: kube-system
 resources:
   - reflector.yaml
   - sealedsecrets.yaml
+
+patchesStrategicMerge:
+  - patch.yaml
