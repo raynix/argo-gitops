@@ -21,6 +21,3 @@ spec:
         node:
           tolerations: []
 
-  syncPolicy:
-    automated:
-      prune: true

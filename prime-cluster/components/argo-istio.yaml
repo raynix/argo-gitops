@@ -14,6 +14,3 @@ spec:
     path: argo-istio
     repoURL: https://github.com/raynix/argo-gitops.git
     targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
