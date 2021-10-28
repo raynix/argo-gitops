@@ -54,10 +54,15 @@ spec:
               path: /health
               port: web
           volumeMounts:
-            - name: assets
+            - name: public-system
+              mountPath: /opt/mastodon/public/system
+            - name: public-assets
               mountPath: /opt/mastodon/public/assets
       volumes:
-        - name: assets
+        - name: public-system
+          persistentVolumeClaim:
+            claimName: mastodon-system
+        - name: public-assets
           persistentVolumeClaim:
             claimName: mastodon-assets
 ---
