@@ -53,7 +53,13 @@ spec:
             httpGet:
               path: /health
               port: web
-
+          volumeMounts:
+            - name: assets
+              mountPath: /opt/mastodon/public/assets
+      volumes:
+        - name: assets
+          persistentVolumeClaim:
+            claimName: mastodon-assets
 ---
 apiVersion: v1
 kind: Service
