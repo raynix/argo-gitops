@@ -16,6 +16,10 @@ spec:
   mountOptions:
     - hard
     - nfsvers=4.1
-  nfs:
-    path: /var/nfs/k8s/grafana
-    server: 192.168.1.51
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: pv-grafana
+    volumeAttributes:
+      server: 192.168.1.51
+      share: /var/nfs/k8s/grafana

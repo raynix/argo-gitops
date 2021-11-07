@@ -3,18 +3,19 @@ kind: Kustomization
 # master switches for all apps and components
 resources:
   - argo-istio.yaml
-  - csi-driver-nfs.yaml
-  - sealed-secrets.yaml
-  - reflector.yaml
-  - prometheus.yaml
-  - cert-manager.yaml
   - certificates.yaml
-  - kube-state-metrics.yaml
+  - cert-manager.yaml
+  - csi-driver-nfs.yaml
   - httpbin.yaml
-  - saus.yaml
   - kubecraft.yaml
-  - wordpress-sophie.yaml
-  - wordpress-dote.yaml
-  - wordpress-ronia.yaml
-  - wordpress-raynix.yaml
+  - kube-state-metrics.yaml
+  - loki-stack.yaml
   - mastodon-awes-one.yaml
+  - prometheus.yaml
+  - reflector.yaml
+  - saus.yaml
+  - sealed-secrets.yaml
+  - wordpress-dote.yaml
+  - wordpress-raynix.yaml
+  - wordpress-ronia.yaml
+  - wordpress-sophie.yaml

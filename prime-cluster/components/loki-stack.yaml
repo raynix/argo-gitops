@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: loki-stack
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: grafana
+    # namespace: loki
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: grafana
+    path: loki-stack
     repoURL: https://github.com/raynix/argo-gitops.git
     targetRevision: HEAD

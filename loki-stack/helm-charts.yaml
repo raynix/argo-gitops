@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki-stack-charts
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: loki
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: loki-stack
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 2.5.0
+    helm:
+      values: |
+        loki:
+          enabled: true
+
+        promtail:
+          enabled: true
+
+        fluent-bit:
+          enabled: false
+
+        grafana:
+          enabled: true
+          namespaceOverride: grafana
+          sidecar:
+            datasources:
+              enabled: false
+          image:
+            tag: 8.2.2
+          persistence:
+            type: pvc
+            enabled: true
+            existingClaim: pvc-grafana
+
+
+        prometheus:
+          enabled: false
+
+        filebeat:
+          enabled: false
+
+        logstash:
+          enabled: false
+
+
