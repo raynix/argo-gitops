@@ -36,7 +36,7 @@ spec:
           persistence:
             type: pvc
             enabled: true
-            existingClaim: pvc-grafana
+            existingClaim: grafana
 
 
         prometheus:
