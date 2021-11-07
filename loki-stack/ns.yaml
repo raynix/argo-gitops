@@ -4,3 +4,10 @@ metadata:
   name: grafana
   labels:
     istio.io/rev: canary
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: loki
+  labels:
+    istio-injection: disabled
