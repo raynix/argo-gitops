@@ -50,9 +50,38 @@ spec:
           initChownData:
             enabled: false
 
-
         prometheus:
-          enabled: false
+          enabled: true
+          forceNamespace: prometheus
+          configmapReload:
+            prometheus:
+              enabled: false
+            alertmanager:
+              enabled: false
+          server:
+            persistence:
+              type: pvc
+              enabled: true
+              existingClaim: prometheus-server
+            resources:
+              limits:
+                cpu: 800m
+                memory: 1Gi
+              requests:
+                cpu: 500m
+                memory: 512Mi
+          alertmanager:
+            persistence:
+              type: pvc
+              enabled: true
+              existingClaim: prometheus-alertmanager
+            resources:
+              limits:
+                cpu: 100m
+                memory: 100Mi
+              requests:
+                cpu: 50m
+                memory: 50Mi
 
         filebeat:
           enabled: false

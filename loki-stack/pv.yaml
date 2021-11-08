@@ -47,3 +47,52 @@ spec:
     volumeAttributes:
       server: 192.168.1.51
       share: /var/nfs/k8s/loki
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-server
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    namespace: prometheus
+    name: prometheus-server
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: pv-prometheus-server
+    volumeAttributes:
+      server: 192.168.1.51
+      share: /var/nfs/k8s/prometheus-server
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-alertmanager
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    namespace: prometheus
+    name: prometheus-alertmanager
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: pv-prometheus-alertmanager
+    volumeAttributes:
+      server: 192.168.1.51
+      share: /var/nfs/k8s/prometheus-alert-manager
