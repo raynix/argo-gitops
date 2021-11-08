@@ -23,3 +23,27 @@ spec:
     volumeAttributes:
       server: 192.168.1.51
       share: /var/nfs/k8s/grafana
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: loki
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+    namespace: loki
+    name: loki
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: pv-loki
+    volumeAttributes:
+      server: 192.168.1.51
+      share: /var/nfs/k8s/loki
