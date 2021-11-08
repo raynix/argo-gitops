@@ -37,6 +37,11 @@ spec:
             type: pvc
             enabled: true
             existingClaim: grafana
+          securityContext:
+            runAsUser: nobody
+            runAsGroup: nogroup
+          initChownData:
+            enabled: false
 
 
         prometheus:
