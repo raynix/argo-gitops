@@ -11,7 +11,6 @@ resources:
   - kube-state-metrics.yaml
   - loki-stack.yaml
   - mastodon-awes-one.yaml
-  - prometheus.yaml
   - reflector.yaml
   - saus.yaml
   - sealed-secrets.yaml
