@@ -30,6 +30,7 @@ metadata:
     component: "alertmanager"
     app: prometheus
   name: prometheus-alertmanager
+  namespace: prometheus
 spec:
   accessModes:
     - ReadWriteMany
@@ -44,6 +45,7 @@ metadata:
     component: "server"
     app: prometheus
   name: prometheus-server
+  namespace: prometheus
 spec:
   accessModes:
     - ReadWriteMany
