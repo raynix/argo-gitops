@@ -26,9 +26,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  labels:
-    component: "alertmanager"
-    app: prometheus
   name: prometheus-alertmanager
   namespace: prometheus
 spec:
@@ -41,9 +38,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  labels:
-    component: "server"
-    app: prometheus
   name: prometheus-server
   namespace: prometheus
 spec:

@@ -60,9 +60,10 @@ spec:
               enabled: false
           server:
             persistence:
-              type: pvc
               enabled: true
               existingClaim: prometheus-server
+              accessModes:
+                - ReadWriteMany
             resources:
               limits:
                 cpu: 800m
@@ -72,9 +73,10 @@ spec:
                 memory: 512Mi
           alertmanager:
             persistence:
-              type: pvc
               enabled: true
               existingClaim: prometheus-alertmanager
+              accessModes:
+                - ReadWriteMany
             resources:
               limits:
                 cpu: 100m
