@@ -11,4 +11,4 @@ spec:
   http:
   - route:
     - destination:
-        host: grafana
+        host: loki-stack-charts-grafana
