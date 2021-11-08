@@ -59,7 +59,7 @@ spec:
             alertmanager:
               enabled: false
           server:
-            persistence:
+            persistentVolume:
               enabled: true
               existingClaim: prometheus-server
               accessModes:
@@ -72,7 +72,7 @@ spec:
                 cpu: 500m
                 memory: 512Mi
           alertmanager:
-            persistence:
+            persistentVolume:
               enabled: true
               existingClaim: prometheus-alertmanager
               accessModes:
