@@ -38,8 +38,8 @@ spec:
             enabled: true
             existingClaim: grafana
           securityContext:
-            runAsUser: nobody
-            runAsGroup: nogroup
+            runAsUser: 472
+            runAsGroup: 472
           initChownData:
             enabled: false
 
