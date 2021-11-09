@@ -84,6 +84,18 @@ spec:
               requests:
                 cpu: 50m
                 memory: 50Mi
+          nodeExporter:
+            enabled: true
+            tolerations:
+              - key: node-role.kubernetes.io/master
+                effect: NoSchedule
+            resources:
+              limits:
+                cpu: 200m
+                memory: 50Mi
+              requests:
+                cpu: 100m
+                memory: 30Mi
 
         filebeat:
           enabled: false
