@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kuberstrike
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: kuberstrike
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize/awes.one
+    repoURL: https://github.com/raynix/kuberstrike.git
+    targetRevision: HEAD

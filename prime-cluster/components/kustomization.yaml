@@ -8,7 +8,7 @@ resources:
   - csi-driver-nfs.yaml
   - httpbin.yaml
   - kubecraft.yaml
-# - kube-state-metrics.yaml
+  - kuberstrike.yaml
   - loki-stack.yaml
   - mastodon-awes-one.yaml
   - reflector.yaml
