@@ -6,6 +6,7 @@ resources:
   - certificates.yaml
   - cert-manager.yaml
   - csi-driver-nfs.yaml
+  - ehelper.yaml
   - httpbin.yaml
   - kubecraft.yaml
   - kuberstrike.yaml
