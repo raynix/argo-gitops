@@ -14,3 +14,6 @@ spec:
     path: .kustomize/raynix
     repoURL: https://github.com/HDCodePractice/EnglishHelper.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
