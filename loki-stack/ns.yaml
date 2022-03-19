@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: grafana
   labels:
-    istio.io/rev: canary
+    istio.io/rev: magpie
 ---
 apiVersion: v1
 kind: Namespace

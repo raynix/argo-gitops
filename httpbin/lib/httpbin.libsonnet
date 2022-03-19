@@ -21,7 +21,7 @@
 
   httpbin: {
     namespace: namespace.new(c.name)
-    + namespace.mixin.metadata.withLabels({ "istio.io/rev": "canary"}),
+    + namespace.mixin.metadata.withLabels({ "istio.io/rev": "magpie"}),
     deployment: deployment.new(
       name=c.name,
       replicas=1,

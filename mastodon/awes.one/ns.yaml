@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: mastodon-awes-one
   labels:
-    istio.io/rev: canary
+    istio.io/rev: magpie
