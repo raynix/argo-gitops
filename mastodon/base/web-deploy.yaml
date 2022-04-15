@@ -8,10 +8,12 @@ spec:
   selector:
     matchLabels:
       app: mastodon-web
+      domain: $(DOMAIN)
   template:
     metadata:
       labels:
         app: mastodon-web
+        domain: $(DOMAIN)
     spec:
       affinity:
         nodeAffinity:
@@ -22,6 +24,21 @@ spec:
                 operator: In
                 values:
                 - amd64
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - mastodon-web
+                    - key: domain
+                      operator: In
+                      values:
+                        - $(DOMAIN)
+                topologyKey: "kubernetes.io/hostname"
       securityContext:
         fsGroup: 991
         runAsGroup: 991

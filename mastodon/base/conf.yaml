@@ -5,3 +5,9 @@ varReference:
     kind: Gateway
   - path: spec/servers/tls/credentialName
     kind: Gateway
+  - path: spec/selector/matchLabels
+    kind: Deployment
+  - path: spec/template/metadata/labels
+    kind: Deployment
+  - path: spec/template/spec/affinity/podAntiAffinity/preferredDuringSchedulingIgnoredDuringExecution/podAffinityTerm/labelSelector/matchExpressions/values
+    kind: Deployment
