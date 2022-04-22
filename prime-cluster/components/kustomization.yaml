@@ -3,6 +3,7 @@ kind: Kustomization
 # master switches for all apps and components
 resources:
   - argo-istio.yaml
+  - argo-rollouts.yaml
   - certificates.yaml
   - cert-manager.yaml
   - csi-driver-nfs.yaml
