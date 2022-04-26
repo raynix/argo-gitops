@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: argocd
+  namespace: argocd
 spec:
   gateways:
     - istio-system/awes-gateway
