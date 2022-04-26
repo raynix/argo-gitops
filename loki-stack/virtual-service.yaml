@@ -5,10 +5,10 @@ metadata:
   namespace: grafana
 spec:
   gateways:
-  - grafana-gateway
+    - istio-system/awes-gateway
   hosts:
-  - grafana.awes.one
+    - grafana.awes.one
   http:
-  - route:
-    - destination:
-        host: loki-stack-charts-grafana
+    - route:
+      - destination:
+          host: loki-stack-charts-grafana
