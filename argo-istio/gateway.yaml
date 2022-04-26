@@ -18,8 +18,8 @@ spec:
         mode: SIMPLE
         credentialName: awes-one-cert
     - hosts:
-        - awes.one
-        - "*.awes.one"
+        - grafana.awes.one
+        - argo.awes.one
       port:
         name: http
         number: 80
