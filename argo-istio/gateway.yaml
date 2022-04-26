@@ -8,8 +8,8 @@ spec:
     istio: ingressgateway
   servers:
     - hosts:
-        - awes.one
-        - "*.awes.one"
+        - grafana.awes.one
+        - argo.awes.one
       port:
         name: https
         number: 443
