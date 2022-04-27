@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets
+  name: external-secrets-helm
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
