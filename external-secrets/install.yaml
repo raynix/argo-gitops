@@ -11,9 +11,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: external-secrets
-    repoURL: https://github.com/raynix/argo-gitops.git
-    targetRevision: HEAD
+    chart: external-secrets
+    repoURL: https://charts.external-secrets.io
+    targetRevision: v0.5.1
+    helm:
+      values: |
+        installCRDs: true
   syncPolicy:
     automated:
       prune: true
