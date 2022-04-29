@@ -25,7 +25,6 @@ spec:
     name: gsm
   target:
     name: cloudflare-api-token2
-    namespace: cert-manager
     creationPolicy: Owner
   dataFrom:
     - extract:
