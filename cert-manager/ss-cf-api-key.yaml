@@ -12,3 +12,21 @@ spec:
       creationTimestamp: null
       name: cloudflare-api-token
       namespace: cert-manager
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: cloudflare-api-token
+spec:
+  refreshInterval: 720h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gsm
+  target:
+    name: cloudflare-api-token2
+    namespace: cert-manager
+    creationPolicy: Owner
+  dataFrom:
+    - extract:
+        key: cloudflare-api-token
