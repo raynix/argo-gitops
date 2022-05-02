@@ -18,6 +18,6 @@ resources:
   - saus.yaml
   - sealed-secrets.yaml
   - wordpress-dote.yaml
-  # - wordpress-raynix.yaml
+  - wordpress-raynix.yaml
   # - wordpress-ronia.yaml
   # - wordpress-sophie.yaml
