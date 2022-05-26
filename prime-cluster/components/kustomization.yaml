@@ -6,6 +6,7 @@ resources:
   - argo-rollouts.yaml
   - certificates.yaml
   - cert-manager.yaml
+  - config-connector.yaml
   - csi-driver-nfs.yaml
   - ehelper.yaml
   - external-secrets.yaml

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: config-connector
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: config-connector
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: config-connector
+    repoURL: https://github.com/raynix/argo-gitops.git
+    targetRevision: HEAD
