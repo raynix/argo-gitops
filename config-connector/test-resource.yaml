@@ -1,0 +1,29 @@
+# apiVersion: iam.cnrm.cloud.google.com/v1beta1
+# kind: IAMServiceAccount
+# metadata:
+#   labels:
+#     test: 'true'
+#   name: test-config-connector
+#   namespace: config-connector-resources
+# spec:
+#   displayName: SA to test config-connector
+# ---
+# apiVersion: storage.cnrm.cloud.google.com/v1beta1
+# kind: StorageBucket
+# metadata:
+#   annotations:
+#     cnrm.cloud.google.com/force-destroy: "false"
+#   labels:
+#     my-test: 'true'
+#   name: raynix-config-connector-test
+#   namespace: config-connector-resources
+# spec:
+#   location: australia-southeast1
+#   lifecycleRule:
+#     - action:
+#         type: Delete
+#       condition:
+#         age: 7
+#   versioning:
+#     enabled: false
+#   uniformBucketLevelAccess: true
