@@ -5,5 +5,5 @@ metadata:
   # instance installed in your cluster
   name: configconnector.core.cnrm.cloud.google.com
 spec:
- mode: cluster
- credentialSecretName: gcp-sa
+  mode: cluster
+  credentialSecretName: gcp-sa
