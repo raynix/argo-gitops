@@ -102,3 +102,6 @@ spec:
 
         logstash:
           enabled: false
+  syncPolicy:
+    automated:
+      prune: true
