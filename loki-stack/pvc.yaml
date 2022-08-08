@@ -42,7 +42,7 @@ metadata:
   namespace: prometheus
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
-      storage: "20Gi"
+      storage: "40Gi"

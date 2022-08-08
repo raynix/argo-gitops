@@ -47,30 +47,6 @@ spec:
     volumeAttributes:
       server: 192.168.1.51
       share: /var/nfs/k8s/loki
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: prometheus-server
-spec:
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  claimRef:
-    namespace: prometheus
-    name: prometheus-server
-  mountOptions:
-    - hard
-    - nfsvers=4.1
-  csi:
-    driver: nfs.csi.k8s.io
-    readOnly: false
-    volumeHandle: pv-prometheus-server
-    volumeAttributes:
-      server: 192.168.1.51
-      share: /var/nfs/k8s/prometheus-server
 
 ---
 apiVersion: v1
@@ -96,3 +72,30 @@ spec:
     volumeAttributes:
       server: 192.168.1.51
       share: /var/nfs/k8s/prometheus-alert-manager
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-server-local
+spec:
+  capacity:
+    storage: 40Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  claimRef:
+    namespace: prometheus
+    name: prometheus-server
+  local:
+    path: /mnt/prometheus-server
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - knode7
