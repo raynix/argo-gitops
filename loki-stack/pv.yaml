@@ -52,27 +52,27 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: prometheus-alertmanager
+  name: prometheus-alertmanager-local
 spec:
   capacity:
-    storage: 2Gi
+    storage: 5Gi
+  volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   claimRef:
     namespace: prometheus
     name: prometheus-alertmanager
-  mountOptions:
-    - hard
-    - nfsvers=4.1
-  csi:
-    driver: nfs.csi.k8s.io
-    readOnly: false
-    volumeHandle: pv-prometheus-alertmanager
-    volumeAttributes:
-      server: 192.168.1.51
-      share: /var/nfs/k8s/prometheus-alert-manager
-
+  local:
+    path: /mnt/prometheus-am
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - knode7
 ---
 apiVersion: v1
 kind: PersistentVolume

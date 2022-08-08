@@ -63,7 +63,7 @@ spec:
               enabled: true
               existingClaim: prometheus-server
               accessModes:
-                - ReadWriteMany
+                - ReadWriteOnce
             resources:
               limits:
                 cpu: 2
@@ -76,7 +76,7 @@ spec:
               enabled: true
               existingClaim: prometheus-alertmanager
               accessModes:
-                - ReadWriteMany
+                - ReadWriteOnce
             resources:
               limits:
                 cpu: 100m
