@@ -1,6 +1,12 @@
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: config-cconnector
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: cnrm-system
 
 ---
