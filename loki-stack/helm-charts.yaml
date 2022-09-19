@@ -60,7 +60,7 @@ spec:
                   options:
                     path: /var/lib/grafana/dashboards/provisioned
           dashboardsConfigMaps:
-            provisioned: dashboard-test
+            provisioned: $(DASHBOARD)
 
         prometheus:
           enabled: true

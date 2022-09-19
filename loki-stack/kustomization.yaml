@@ -1,5 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+configurations:
+  - config.yaml
+
 resources:
   - ns.yaml
   - pv.yaml
@@ -12,3 +16,10 @@ configMapGenerator:
     namespace: grafana
     files:
       - dashboard-test.json
+
+vars:
+  - name: DASHBOARD
+    objref:
+      kind: ConfigMap
+      name: dashboard-test
+      apiVersion: v1
