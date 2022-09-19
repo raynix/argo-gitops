@@ -49,6 +49,18 @@ spec:
             runAsGroup: 472
           initChownData:
             enabled: false
+          dashboardProviders:
+            dashboardproviders.yaml:
+              apiVersion: 1
+              providers:
+                - name: 'provisioned'
+                  orgId: 1
+                  folder: 'Provisioned'
+                  type: file
+                  options:
+                    path: /var/lib/grafana/dashboards/provisioned
+          dashboardsConfigMaps:
+            provisioned: dashboard-test
 
         prometheus:
           enabled: true

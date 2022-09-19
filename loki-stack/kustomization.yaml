@@ -6,3 +6,8 @@ resources:
   - pvc.yaml
   - virtual-service.yaml
   - helm-charts.yaml
+
+configMapGenerator:
+  - name: dashboard-test
+    files:
+      - dashboard-test.json
