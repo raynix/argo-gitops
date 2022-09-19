@@ -9,5 +9,6 @@ resources:
 
 configMapGenerator:
   - name: dashboard-test
+    namespace: grafana
     files:
       - dashboard-test.json
