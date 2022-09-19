@@ -40,6 +40,11 @@ spec:
               enabled: true
               label: grafana_dashboard
               folder: /tmp/dashboards
+              provider:
+                name: sidecarProvider
+                orgid: 1
+                folder: Provisioned
+                type: file
             datasources:
               enabled: false
           image:
