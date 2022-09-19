@@ -38,7 +38,7 @@ spec:
           sidecar:
             dashboards:
               enabled: true
-              lable: grafana_dashboard
+              label: grafana_dashboard
               folder: /tmp/dashboards
             datasources:
               enabled: false
