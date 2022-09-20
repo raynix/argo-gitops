@@ -27,10 +27,3 @@ configMapGenerator:
     files:
       - dashboard-test.json
       - dashboard-k8s.json
-
-vars:
-  - name: DASHBOARD
-    objref:
-      kind: ConfigMap
-      name: dashboard-test
-      apiVersion: v1
