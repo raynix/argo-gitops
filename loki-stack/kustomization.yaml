@@ -12,19 +12,20 @@ resources:
   - helm-charts.yaml
 
 configMapGenerator:
-  - name: dashboard-test
+  - name: datasources
+    namespace: grafana
+    options:
+      labels:
+        grafana_datasource: 'yes'
+    files:
+      - datasources.json
+  - name: dashboards
     namespace: grafana
     options:
       labels:
         grafana_dashboard: 'yes'
     files:
       - dashboard-test.json
-  - name: dashboard-k8s
-    namespace: grafana
-    options:
-      labels:
-        grafana_dashboard: 'yes'
-    files:
       - dashboard-k8s.json
 
 vars:
