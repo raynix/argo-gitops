@@ -651,7 +651,7 @@
             "refId": "A"
           }
         ],
-        "title": "Network In",
+        "title": "Network Out",
         "type": "stat"
       },
       {
