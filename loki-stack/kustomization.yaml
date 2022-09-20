@@ -19,6 +19,13 @@ configMapGenerator:
         grafana_dashboard: 'yes'
     files:
       - dashboard-test.json
+  - name: dashboard-k8s
+    namespace: grafana
+    options:
+      labels:
+        grafana_dashboard: 'yes'
+    files:
+      - dashboard-k8s.json
 
 vars:
   - name: DASHBOARD
