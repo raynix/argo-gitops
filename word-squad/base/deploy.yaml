@@ -36,6 +36,9 @@ spec:
       containers:
         - name: django-bot
           image: ghcr.io/raynix/word-squad:dev-3306638368
+          command:
+            - python
+            - bot.py
           envFrom:
             - secretRef:
                 name: word-squad-env

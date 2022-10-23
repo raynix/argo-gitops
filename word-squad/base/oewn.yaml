@@ -50,9 +50,13 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 3306
+            initialDelaySeconds: 300
+            periodSeconds: 20
           readinessProbe:
             tcpSocket:
               port: 3306
+            initialDelaySeconds: 300
+            periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
