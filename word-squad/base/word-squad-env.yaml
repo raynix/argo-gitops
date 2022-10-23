@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: word-squad-env
+  namespace: word-squad
+spec:
+  encryptedData:
+    BOT_TOKEN: AgB4VHaaBBiMkegbT1kUBvmDFmL7I5y5AC2sxxiP1UJziVcY8WOD93X3fjWj74euq7fsbAb3vYii1/59g68Dlo06STCz0JXqLuQ95xMEch84NADVpvmV1Wlztrv35Xm4RHoOBR8NCXWw5awNf1xYpbCj9Rn7/Vxxesl1P26kcum0x27AoJLuARn062nv4sI1D2QDkAWxBitWrTbIViLRfhCSSfIgxyAsqh3pI4JTbFoD8Z3zGRt17ZXwNHlQGBn2tsF5E9A2/+J5o+a654E8x6kcIln8AvZDkYiQEwPSrfEYkXa+YOyjNv5tl2npeNX+HikNYF2raeSkJnLGY1DDZpljlAhRonkCDm5bk4gOSjTKNwwGLXio9gv6PxeNtFzk/pi9tIog7JzFPY4Rq+TvMnE8bKOdvLrfFOwuSGltCw37FlPav+SNgDUhjBVnAAepWOdJC/bGPcUok2QznGvdbKavW0m/TzmlFHDsU08bLavBuu/IdUVp3yRpwIeUxCH3darrsIUjFx/G9QlN6Rb1UEUn1w9iTmi1E0hNqlbOfVWKmWoY0vwjrtFOHFqHF6c2Fzbsg44ktm/gAdtk3gUNpYfBoySR7MTY2Sbe6S+GmR4HCK5hzia1FytDW7N+2nfAI37CIBqxOx2qL9HLBHOwrbfADUsovp4Wcl4v/FpYrN5xs5n7R7+Zf/8vxdwUAnTjPNiFeO4Ep750/ZhDvRP8kdUFn22W6158X/XOFNxKgFWculMKQd34YgSYAIdRkOtY
+  template:
+    data: null
+    metadata:
+      creationTimestamp: null
+      name: word-squad-env
+      namespace: word-squad
+

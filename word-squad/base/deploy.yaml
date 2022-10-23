@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: word-squad
+  namespace: word-squad
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: word-squad
+  template:
+    metadata:
+      labels:
+        app: word-squad
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - oewn-mysql
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: django-bot
+          image: ghcr.io/raynix/word-squad:dev-3306638368
+          envFrom:
+            - secretRef:
+                name: word-squad-env
+          resources:
+            requests:
+              memory: 400Mi
+              cpu: 200m
