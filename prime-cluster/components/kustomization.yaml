@@ -22,3 +22,4 @@ resources:
   - wordpress-raynix.yaml
   # - wordpress-ronia.yaml
   # - wordpress-sophie.yaml
+  - word-squad.yaml
