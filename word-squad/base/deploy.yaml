@@ -42,7 +42,15 @@ spec:
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: wordSquad.settings-tg
+          volumeMounts:
+            - name: word-squad-settings
+              mountPath: /app/wordSquad/settings-tg.py
+              subPath: settings-tg.py
           resources:
             requests:
               memory: 400Mi
               cpu: 200m
+      volumes:
+        - name: word-squad-settings
+          secret:
+            secretName: word-squad-settings
