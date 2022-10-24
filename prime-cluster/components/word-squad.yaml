@@ -11,8 +11,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: word-squad/base
-    repoURL: https://github.com/raynix/argo-gitops.git
+    path: .kustomize
+    repoURL: https://github.com/raynix/word-squad.git
     targetRevision: HEAD
   syncPolicy:
     automated:
