@@ -1,17 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets
+  name: bootstrap
   namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: external-secrets
+    namespace: bootstrap
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: external-secrets
+    path: obsidian-cluster/bootstrap
     repoURL: https://github.com/raynix/argo-gitops.git
     targetRevision: HEAD
   syncPolicy:
