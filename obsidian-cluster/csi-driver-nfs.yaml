@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: csi-driver-nfs
   namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: kube-system
@@ -20,4 +18,3 @@ spec:
           tolerations: []
         node:
           tolerations: []
-
