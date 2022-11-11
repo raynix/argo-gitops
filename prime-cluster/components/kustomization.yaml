@@ -3,16 +3,16 @@ kind: Kustomization
 # master switches for all apps and components
 resources:
   - argo-istio.yaml
-  - argo-rollouts.yaml
+  # - argo-rollouts.yaml
   - certificates.yaml
   - cert-manager.yaml
-  - config-connector.yaml
+  # - config-connector.yaml
   - csi-driver-nfs.yaml
-  - ehelper.yaml
+  # - ehelper.yaml
   - external-secrets.yaml
-  - httpbin.yaml
-  - kubecraft.yaml
-  - kuberstrike.yaml
+  # - httpbin.yaml
+  # - kubecraft.yaml
+  # - kuberstrike.yaml
   - loki-stack.yaml
   - mastodon-awes-one.yaml
   - reflector.yaml
