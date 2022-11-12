@@ -3,7 +3,8 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - reflector.yaml
-  - sealedsecrets.yaml
+  - ss-gcp-env.yaml
+  - ss-gcp-sa.yaml
 
 patchesStrategicMerge:
   - patch.yaml
