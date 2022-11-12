@@ -1,0 +1,21 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: backup-gcp-env
+  namespace: kube-system
+spec:
+  encryptedData:
+    BACKUP_BUCKET: AgCiEqR2hd02NIy4gevgCNrGZ5txvFCeHOuqC7fuoJVK79l0ZfZyq3uvtYfCBXEgzM6osm5BnGHC/fl7QsXzG0r/xQB5AiBsmtqHH56g89bVYa/e2ZFa2B7yg0Iu3YLT1ri496r1ef9UcCCVLkXN2NzuPMfIELAf4elvMMFdJ5g/exdFXXIxn0j25V0N4DrJLf3iwDTTb0QvrIHm9XUsWPT62YWlEkIdKCazGADF8PwxGtMG8E2eceaif4sr6/pVa+k1PXGeBLeOxMpouq5Cj+dh1GEsc3a/4VdcqoFRtneCSuO1KEnE+ZYBoT0j6kf1Uafp2qSa1Egu51yPmSCKHlAqMoKV4NQ0aSSIOGSAbxvoS0Dk80JlLrr4cuZpSasgx5wWQxVqRG/GScO1910huOw3g23Fd8wcb8L+sbp24I9DnTpSmPTvXgsom8XDNG5s/pcpmKjSNITBxD9SzpzQAsBTAVp2FQdNmCmieshJ89jYfoH2Df8LjMWll7Ufpc6mP1A2rr+JXyB8Cz+6kRC74OQuxDvUHJ7UzCFxDVqBoyNX/V7sbqHcis/TOzK2rA5Cx0R5QZ9RRSto29S6b747yAerRBg7GmK9mt6E3aFKMXYlVGsyy7PD9VXDnOKOUGNNX9RxV528qUg3X+JxHsztJtQzq3UXyfjwjS7NXrXBGj4Uao9ixLNonrR1OtdTaZQkeLjx9ZQc9zBuX+b50KU+CaIbE1iSsHnnQA==
+    SERVICE_ACCOUNT_KEY: AgCekt8rDTudUDXuyTqja+yzSlT2wpHWAferhIGV0LVAVCHJmLXMtWgB6xhDErPpXwxTzUNFdizoULSrJhOIds5N9IqSGB+3r4GJjMgTvhmqjdCVwQU9Wz5HlprjYtmsjDLomNm1SCybZLjcfUDcUFRdRXcV5yk7v0aF2jdRIUFpKdR3aGnM5mdKtJXWrV16pyQWzDJB2h/O/7XRkY6eX39eUImCzih3fqabU22cFiRmlrAMTdssjvxHHVmrTKtjansmI2HoTGDMPnlZH9FPTUOnjDTyBH6v97h3E+kdNLNh6NTWBt/AI+OQg2B0PP7Juvzy/H13ZiMG7u2AIsEVtHajqpAs3Xl3kZmE2st4o0j9JeNQx+m/0x5LgWpulEqdqB4xCiUNNTyI7bbhm/tA/l9CahzI+bDUxdPeSC6KnoOTsePbG0rxE7ICtxFDHKm+HqySNDbBKVRTQZq1R/FE2Xfr4Iiuwcpsr73k6R/MXIMpBcZoXJjYdwI/7m1k5EQjzgD4KYcaiW209s274hs7XUjSRLO7zTm2jJ16MxQFVo27KtZ0XuGFKFtQzei+g0xQh2VB4PBb99217DhDE42mBgSPCnznvzAgfTaawbUJN/nrVJw/dClQXQp0G3T6ZCPP+addVkV42QAnx5L4u6IH0/aUmbUE3i4CRRusGVGpCXi+iWu/5j1eGqKiahiuo7e2D8POoWeW1UPRSRoRIbFzkut4YADODnjpU9TTs0ANpKGphP800lKekA==
+  template:
+    data: null
+    metadata:
+      annotations:
+        reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+        reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+        reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: wordpress-.*,mastodon.*
+      creationTimestamp: null
+      name: backup-gcp-env
+      namespace: kube-system
+
