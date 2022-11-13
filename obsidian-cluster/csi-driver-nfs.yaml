@@ -18,3 +18,6 @@ spec:
           tolerations: []
         node:
           tolerations: []
+  syncPolicy:
+    automated:
+      prune: true
