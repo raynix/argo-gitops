@@ -13,7 +13,7 @@ resources:
   # - httpbin.yaml
   # - kubecraft.yaml
   # - kuberstrike.yaml
-  - loki-stack.yaml
+  # - loki-stack.yaml
   - mastodon-awes-one.yaml
   - reflector.yaml
   - saus.yaml
