@@ -14,12 +14,12 @@ resources:
   # - kubecraft.yaml
   # - kuberstrike.yaml
   # - loki-stack.yaml
-  - mastodon-awes-one.yaml
+  # - mastodon-awes-one.yaml
   - reflector.yaml
-  - saus.yaml
+  # - saus.yaml
   - sealed-secrets.yaml
-  - wordpress-dote.yaml
-  - wordpress-raynix.yaml
+  # - wordpress-dote.yaml
+  # - wordpress-raynix.yaml
   # - wordpress-ronia.yaml
   # - wordpress-sophie.yaml
   # - word-squad.yaml
