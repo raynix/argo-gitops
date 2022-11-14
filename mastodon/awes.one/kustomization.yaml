@@ -11,7 +11,7 @@ commonAnnotations:
 resources:
   - ns.yaml
   - pv.yaml
-  - sealed-secret-mastodon.yaml
+  - ss.yaml
 
 images:
   - name: tootsuite/mastodon
