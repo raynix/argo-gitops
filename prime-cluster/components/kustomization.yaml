@@ -4,18 +4,18 @@ kind: Kustomization
 resources:
   - argo-istio.yaml
   # - argo-rollouts.yaml
-  - certificates.yaml
-  - cert-manager.yaml
+  # - certificates.yaml
+  # - cert-manager.yaml
   # - config-connector.yaml
-  - csi-driver-nfs.yaml
+  # - csi-driver-nfs.yaml
   # - ehelper.yaml
-  - external-secrets.yaml
+  # - external-secrets.yaml
   # - httpbin.yaml
   # - kubecraft.yaml
   # - kuberstrike.yaml
   # - loki-stack.yaml
   # - mastodon-awes-one.yaml
-  - reflector.yaml
+  # - reflector.yaml
   # - saus.yaml
   - sealed-secrets.yaml
   # - wordpress-dote.yaml
