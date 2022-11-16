@@ -11,6 +11,8 @@ spec:
       template:
         metadata:
           name: cronjob-backup
+          annotations:
+            sidecar.istio.io/inject: "false"
         spec:
           affinity:
             nodeAffinity:
