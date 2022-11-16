@@ -15,6 +15,6 @@ resources:
 
 images:
   - name: tootsuite/mastodon
-    newTag: v3.4.6
+    newTag: v4.0.2
   - name: ghcr.io/raynix/backup
     newTag: v0.29
