@@ -39,13 +39,7 @@ spec:
                 - /bin/bash
                 - -c
                 - |
-                  until curl -fsI http://localhost:15021/healthz/ready; do
-                    echo 'Waiting for Sidecar...'
-                    sleep 1
-                  done
                   /mastodon.sh $(DOMAIN) /gcp/idyllic-depth-239301-8ede1c36924a.json raynix-melbourne-backup
-                  curl -fsI -X POST http://localhost:15020/quitquitquit
-
               envFrom:
                 - secretRef:
                     name: mastodon
