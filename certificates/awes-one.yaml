@@ -22,6 +22,7 @@ spec:
     - grafana.awes.one
     - argo.awes.one
     - httpbin.awes.one
+    - wordsquad.awes.one
   issuerRef:
     name: letsencrypt-issuer
     kind: ClusterIssuer
