@@ -10,6 +10,8 @@ spec:
     - hosts:
         - grafana.awes.one
         - argo.awes.one
+        - httpbin.awes.one
+        - wordsquad.awes.one
       port:
         name: https
         number: 443
@@ -20,6 +22,8 @@ spec:
     - hosts:
         - grafana.awes.one
         - argo.awes.one
+        - httpbin.awes.one
+        - wordsquad.awes.one
       port:
         name: http
         number: 80
