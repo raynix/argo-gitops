@@ -1134,42 +1134,6 @@
         "type": "timeseries"
       },
       {
-        "alert": {
-          "alertRuleTags": {},
-          "conditions": [
-            {
-              "evaluator": {
-                "params": [
-                  0.1
-                ],
-                "type": "lt"
-              },
-              "operator": {
-                "type": "and"
-              },
-              "query": {
-                "params": [
-                  "A",
-                  "5m",
-                  "now"
-                ]
-              },
-              "reducer": {
-                "params": [],
-                "type": "avg"
-              },
-              "type": "query"
-            }
-          ],
-          "executionErrorState": "alerting",
-          "for": "5m",
-          "frequency": "1m",
-          "handler": 1,
-          "message": "",
-          "name": "Proxy Free CPU alert",
-          "noDataState": "no_data",
-          "notifications": []
-        },
         "datasource": "InfluxDB-telegraf",
         "fieldConfig": {
           "defaults": {
@@ -1379,7 +1343,7 @@
         "targets": [
           {
             "exemplar": true,
-            "expr": "avg by (node) (irate(node_cpu_seconds_total{node=\"kmaster1\", mode=\"idle\"}[5m]))",
+            "expr": "avg by (node) (irate(node_cpu_seconds_total{node=\"kmaster2\", mode=\"idle\"}[5m]))",
             "interval": "",
             "legendFormat": "{{ kubernetes_node }}",
             "refId": "A"
@@ -1480,7 +1444,7 @@
         "targets": [
           {
             "exemplar": true,
-            "expr": "avg(node_memory_MemAvailable_bytes{node=\"kmaster1\"})",
+            "expr": "avg(node_memory_MemAvailable_bytes{node=\"kmaster2\"})",
             "interval": "",
             "legendFormat": "available",
             "refId": "B"
@@ -1590,7 +1554,7 @@
         "targets": [
           {
             "exemplar": true,
-            "expr": "avg(node_filesystem_free_bytes{node=\"kmaster1\"})",
+            "expr": "avg(node_filesystem_free_bytes{node=\"kmaster2\"})",
             "interval": "",
             "legendFormat": "free space",
             "refId": "A"
