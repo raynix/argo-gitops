@@ -67,6 +67,11 @@ spec:
               enabled: false
             alertmanager:
               enabled: false
+          extraScrapeConfigs:
+            - job_name: host_sniper
+              static_configs:
+                - targets:
+                  - 192.168.1.51:9100
           server:
             persistentVolume:
               enabled: true
