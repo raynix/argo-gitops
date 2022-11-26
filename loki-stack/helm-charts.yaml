@@ -72,6 +72,14 @@ spec:
               static_configs:
                 - targets:
                   - 192.168.1.51:9100
+            - job_name: host_proxy1
+              static_configs:
+                - targets:
+                  - 192.168.1.80:9100
+            - job_name: host_proxy2
+              static_configs:
+                - targets:
+                  - 192.168.1.82:9100
           server:
             persistentVolume:
               enabled: true
