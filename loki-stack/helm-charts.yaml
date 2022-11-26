@@ -67,7 +67,7 @@ spec:
               enabled: false
             alertmanager:
               enabled: false
-          extraScrapeConfigs:
+          extraScrapeConfigs: |
             - job_name: host_sniper
               static_configs:
                 - targets:
