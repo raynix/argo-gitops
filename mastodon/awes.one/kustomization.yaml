@@ -14,7 +14,7 @@ resources:
   - ss.yaml
 
 images:
-  - name: tootsuite/mastodon
-    newTag: v4.0.2
+  - name: ghcr.io/mastodon/mastodon
+    newTag: v4.1.1
   - name: ghcr.io/raynix/backup
     newTag: v0.29

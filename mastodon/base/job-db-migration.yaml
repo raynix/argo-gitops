@@ -24,7 +24,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: mastodon-db-migrate
-          image: "tootsuite/mastodon:v3.3.0"
+          image: "ghcr.io/mastodon/mastodon:v3.3.0"
           command:
             - /bin/bash
             - -c

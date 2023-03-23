@@ -45,7 +45,7 @@ spec:
         runAsUser: 991
       containers:
         - name: web
-          image: tootsuite/mastodon:v3.3.0
+          image: ghcr.io/mastodon/mastodon:v3.3.0
           command:
             - bundle
             - exec

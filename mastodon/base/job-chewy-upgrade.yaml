@@ -31,7 +31,7 @@ spec:
             claimName: mastodon-system
       containers:
         - name: mastodon-chewy-upgrade
-          image: "tootsuite/mastodon:v3.3.0"
+          image: "ghcr.io/mastodon/mastodon:v3.3.0"
           command:
             - bundle
             - exec

@@ -33,7 +33,7 @@ spec:
                 claimName: mastodon-system
           containers:
             - name: mastodon-media-remove-orphans
-              image: "tootsuite/mastodon:v3.3.0"
+              image: "ghcr.io/mastodon/mastodon:v3.3.0"
               command:
                 - /bin/bash
                 - -c
