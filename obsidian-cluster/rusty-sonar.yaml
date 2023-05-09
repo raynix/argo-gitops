@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rusty-sonar
+  namespace: argocd
+spec:
+  destination:
+    namespace: rusty-sonar
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: .kustomize/raynix
+    repoURL: https://github.com/raynix/rusty-sonar.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
