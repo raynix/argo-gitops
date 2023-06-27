@@ -23,6 +23,7 @@ spec:
     - argo.awes.one
     - httpbin.awes.one
     - wordsquad.awes.one
+    - yopass.awes.one
   issuerRef:
     name: letsencrypt-issuer
     kind: ClusterIssuer

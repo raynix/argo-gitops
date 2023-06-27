@@ -12,6 +12,7 @@ spec:
         - argo.awes.one
         - httpbin.awes.one
         - wordsquad.awes.one
+        - yopass.awes.one
       port:
         name: https
         number: 443
@@ -24,6 +25,7 @@ spec:
         - argo.awes.one
         - httpbin.awes.one
         - wordsquad.awes.one
+        - yopass.awes.one
       port:
         name: http
         number: 80
