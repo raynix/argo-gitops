@@ -2,35 +2,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: saus-dev
+  name: yopass
   namespace: argocd
 spec:
   destination:
-    namespace: saus-dev
+    namespace: yopass
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: .kustomize/dev.sausl.ink
-    repoURL: https://github.com/raynix/saus.git
-    targetRevision: dev
-  syncPolicy:
-    automated:
-      prune: true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: saus-prod
-  namespace: argocd
-spec:
-  destination:
-    namespace: saus
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: .kustomize/sausl.ink
-    repoURL: https://github.com/raynix/saus.git
-    targetRevision: main
+    path: yopass
+    repoURL: https://github.com/raynix/argo-gitops.git
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
