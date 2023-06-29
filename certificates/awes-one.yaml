@@ -19,9 +19,10 @@ spec:
     - client auth
   dnsNames:
     - awes.one
-    - grafana.awes.one
     - argo.awes.one
+    - grafana.awes.one
     - httpbin.awes.one
+    - luckybirdie.awes.one
     - wordsquad.awes.one
     - yopass.awes.one
   issuerRef:
