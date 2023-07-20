@@ -46,7 +46,7 @@ spec:
             datasources:
               enabled: false
           image:
-            tag: 8.2.2
+            tag: 10.0.2
           persistence:
             type: pvc
             enabled: true
