@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: csi-driver-nfs
   namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: kube-system
@@ -13,11 +11,13 @@ spec:
   source:
     chart: csi-driver-nfs
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
-    targetRevision: v3.0.0
+    targetRevision: v3.1.0
     helm:
       values: |
         controller:
           tolerations: []
         node:
           tolerations: []
-
+  syncPolicy:
+    automated:
+      prune: true
