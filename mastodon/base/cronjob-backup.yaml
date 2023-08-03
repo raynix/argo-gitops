@@ -39,10 +39,12 @@ spec:
                 - /bin/bash
                 - -c
                 - |
-                  /mastodon.sh $(DOMAIN) /gcp/idyllic-depth-239301-8ede1c36924a.json raynix-melbourne-backup
+                  /mastodon.sh $(DOMAIN) /gcp/${SERVICE_ACCOUNT_KEY} ${BACKUP_BUCKET}
               envFrom:
                 - secretRef:
                     name: mastodon
+                - secretRef:
+                    name: backup-gcp-env
               volumeMounts:
                 - name: gcp-sa
                   mountPath: /gcp
