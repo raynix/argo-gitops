@@ -7,7 +7,7 @@ data:
         args: ["install"]
       generate:
         command: ["/bin/sh", "-c"]
-        args: ["/sideloader/tk show environments/${TK_ENV} --dangerous-allow-redirect"]
+        args: ["/sideloader/tk show environments/${ARGOCD_ENV_TK_ENV} --dangerous-allow-redirect"]
 
   resource.customizations.health.bitnami.com_SealedSecret: |
     hs = {}
