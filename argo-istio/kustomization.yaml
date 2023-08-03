@@ -6,3 +6,5 @@ kind: Kustomization
 resources:
   - gateway.yaml
   - virtualservice.yaml
+  - argocd-cm.yaml
+  - argocd-cmd-params-cm.yaml
