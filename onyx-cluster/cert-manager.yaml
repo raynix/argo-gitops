@@ -1,20 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets-controller
+  name: cert-manager
   namespace: argocd
 spec:
   destination:
-    namespace: external-secrets
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: external-secrets
-    repoURL: https://charts.external-secrets.io
-    targetRevision: v0.6.1
-    helm:
-      values: |
-        installCRDs: true
+    path: cert-manager
+    repoURL: https://github.com/raynix/argo-gitops.git
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true

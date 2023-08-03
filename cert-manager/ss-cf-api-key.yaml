@@ -1,17 +1,14 @@
----
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
 metadata:
   name: cloudflare-api-token
   namespace: cert-manager
 spec:
-  refreshInterval: 720h
-  secretStoreRef:
-    kind: ClusterSecretStore
-    name: gsm
-  target:
-    name: cloudflare-api-token
-    creationPolicy: Owner
-  dataFrom:
-    - extract:
-        key: cloudflare-api-token
+  encryptedData:
+    api-key: AgBK8l6fbyx252tIe44x/hok+7mHvu4D9tr/JZpAKLMAEGvVT3GtP93qqesKSNR3VWca6KY55YP1Gv3ctSTLrbcfoYuLHeEVs/AaobbEg+/I2xz7dV0+gHCCEsAgMmqH1Of5JtHtXco5yg05f8xiiW7i1AlX2a78hJt8xx8EoHzgwdnFLIMCdhMVswC6Pmd2kuBa1T5BkLlPcHBPC5YP0blspKmYuJTN4377yEYmhreVnQNqLC+UZ4cLxldN+kHUVg23VPY3gd6h7RhMpzGRuPXEbyAQxde6ngdfHRoQ+9A2Mm3aUgqN1LJhe7KpKbgcXAa5rkJONYnNMnvWPYHKcZ8er3uuk5vko//sBwjABujMOm1TVfHyidIWd4y2tbapm7lgYDsF4abVNRAuvveCG8IrzCRfNmcrlOJf+dxgHESj6pz9BjaIJBgkttghOgeg3BAweyJlXrN77fXg2EctQF5bLe0N+mugZiiHCjs/0YAhJ+bLPbAPC5GJElTmX5h15gykDjL5aRgX2BI3qQKiVfLFYWg/Uc3xkOkm30zmqGid7IQydGVz2W5kI28+Vmyt0NamCziD+T0VG3ZPIhVFloyJOFu6RbozyZ154zdAWmfbbK2QvMmZE2mIpdXH2xof6+nLhR2L2+NHvEfscJbEJGqU9844PTsk7lQdFrpW0yxFBdcnMgMb4a5eNsKXYnqv1xJkOredF2PQOHu7RC83nBbDQUV3wNG0So2OBX6aG+4TaY4FkZ83tto5
+  template:
+    data: null
+    metadata:
+      creationTimestamp: null
+      name: cloudflare-api-token
+      namespace: cert-manager
