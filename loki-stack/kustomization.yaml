@@ -27,3 +27,4 @@ configMapGenerator:
     files:
       - dashboard-test.json
       - dashboard-k8s.json
+      - dashboard-machines.json
