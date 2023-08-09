@@ -1389,11 +1389,27 @@
             "type": "prometheus",
             "uid": "000000004"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (job) (irate(node_network_receive_bytes_total{job=~\"host_proxy.*\"}[5m]))",
+          "expr": "- sum by (job) (irate(node_network_receive_bytes_total{job=~\"host_proxy.*\"}[5m]))",
           "interval": "",
-          "legendFormat": "{{job}}",
+          "legendFormat": "{{job}} RX",
+          "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000004"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum by (job) (irate(node_network_transmit_bytes_total{job=~\"host_proxy.*\"}[5m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{job}} TX",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Proxy Network IO",
@@ -2459,6 +2475,6 @@
   "timezone": "",
   "title": "My K8s Cluster",
   "uid": "ZZnxF0pWz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
