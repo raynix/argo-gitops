@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 27,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1736,10 +1735,12 @@
             "type": "prometheus",
             "uid": "000000004"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg(node_memory_MemAvailable_bytes{node=\"kmaster2\"})",
+          "expr": "node_memory_MemAvailable_bytes{node=\"kmaster2\"}",
           "interval": "",
           "legendFormat": "available",
+          "range": true,
           "refId": "B"
         }
       ],
@@ -1859,10 +1860,12 @@
             "type": "prometheus",
             "uid": "000000004"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg(node_filesystem_free_bytes{node=\"kmaster2\"})",
+          "expr": "node_filesystem_free_bytes{node=\"kmaster2\", device=~\"/dev/.*\"}",
           "interval": "",
-          "legendFormat": "free space",
+          "legendFormat": "{{device}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2169,7 +2172,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "asc"
         }
       },
       "pluginVersion": "10.0.2",
@@ -2179,10 +2182,12 @@
             "type": "prometheus",
             "uid": "000000004"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (node) (node_memory_MemAvailable_bytes{node=~\"knode.+\"})",
+          "expr": "node_memory_MemAvailable_bytes{node=~\"knode.+\"}",
           "interval": "",
-          "legendFormat": "{{ kubernetes_node }}",
+          "legendFormat": "{{ node }}",
+          "range": true,
           "refId": "B"
         }
       ],
@@ -2292,7 +2297,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "none"
+          "sort": "asc"
         }
       },
       "pluginVersion": "10.0.2",
@@ -2302,10 +2307,12 @@
             "type": "prometheus",
             "uid": "000000004"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (node) (node_filesystem_free_bytes{node=~\"knode.+\"})",
+          "expr": "node_filesystem_free_bytes{node=~\"knode.+\", device=~\"/dev/.*\"}",
           "interval": "",
-          "legendFormat": "{{ kubernetes_node }}",
+          "legendFormat": "{{node}}:{{device}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2475,6 +2482,6 @@
   "timezone": "",
   "title": "My K8s Cluster",
   "uid": "ZZnxF0pWz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
