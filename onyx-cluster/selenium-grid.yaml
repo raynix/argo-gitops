@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: selenium-grid
+  namespace: argocd
+spec:
+  destination:
+    namespace: selenium-grid
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: selenium-grid
+    repoURL: https://www.selenium.dev/docker-selenium
+    targetRevision: 0.21.3
+    helm:
+      values: |
+        ingress:
+          enabled: false
+        chromeNode:
+          enabled: true
+          replicas: 2
+        firefoxNode:
+          enabled: false
+        edgeNode:
+          enabled: false
+  syncPolicy:
+    automated:
+      prune: true
