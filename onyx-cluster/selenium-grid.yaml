@@ -20,7 +20,8 @@ spec:
           enabled: true
           replicas: 2
         firefoxNode:
-          enabled: false
+          enabled: true
+          replicas: 2
         edgeNode:
           enabled: false
   syncPolicy:
