@@ -5,10 +5,10 @@ metadata:
   namespace: argocd
 
 spec:
-  version: v0.25.0,
+  version: v0.25.0
   init:
     command: [ "sh", "-c", "/home/argocd/cmp-server/plugins/jb install" ]
   generate:
-    command: [ "sh", "-c", "/home/argocd/cmp-server/plugins/tk show environments/${ARGOCD_ENV_TK_ENV} --dangerous-allow-redirect" ],
+    command: [ "sh", "-c", "/home/argocd/cmp-server/plugins/tk show environments/${ARGOCD_ENV_TK_ENV} --dangerous-allow-redirect" ]
   discover:
     fileName: "*"
