@@ -11,4 +11,4 @@ spec:
   generate:
     command: [ "sh", "-c", "/home/argocd/cmp-server/plugins/tk show environments/${ARGOCD_ENV_TK_ENV} --dangerous-allow-redirect" ]
   discover:
-    fileName: "*"
+    fileName: "./environments/*/main.jsonnet"
