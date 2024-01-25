@@ -13,28 +13,34 @@ spec:
         app.kubernetes.io/name: argocd-repo-server
     spec:
       containers:
-      - name: argocd-repo-server
-        volumeMounts:
-        # for tanka plugin
-        - name: sideloader
-          mountPath: /sideloader
-      initContainers:
       # for tanka plugin
-      - name: sideloader
-        image: ghcr.io/raynix/sideloader:latest
-        args:
-        # args are processed in pairs
-          - tk
-          - https://github.com/grafana/tanka/releases/download/v0.25.0/tk-linux-amd64
-          - jb
-          - https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v0.5.1/jb-linux-amd64
+      - name: cmp
+        image: curlimages/curl:latest
+        command:
+          - sh
+          - -c
+          - |
+            cd /home/argocd/cmp-server/plugins && \
+            curl -Lo jb "https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v0.5.1/jb-linux-amd64" && \
+            curl -Lo tk "https://github.com/grafana/tanka/releases/download/v0.25.0/tk-linux-amd64" && \
+            chmod +x jb tk && \
+            /var/run/argocd/argocd-cmp-server
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
         volumeMounts:
-          - name: sideloader
-            mountPath: /sideloader
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin.yaml
+            name: cmp-tanka
       volumes:
       # for tanka plugin
-      - name: sideloader
-        emptyDir: {}
+      - name: cmp-tanka
+        configMap:
+          name: cmp-tanka
 
 ---
 apiVersion: v1
@@ -42,15 +48,6 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
-  configManagementPlugins: |
-    - name: tanka
-      init:
-        command: ["/sideloader/jb"]
-        args: ["install"]
-      generate:
-        command: ["/bin/sh", "-c"]
-        args: ["/sideloader/tk show environments/${ARGOCD_ENV_TK_ENV} --dangerous-allow-redirect"]
-
   resource.customizations.health.bitnami.com_SealedSecret: |
     hs = {}
     hs.status = "Healthy"
