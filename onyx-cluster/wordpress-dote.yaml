@@ -13,7 +13,6 @@ spec:
     repoURL: https://github.com/raynix/kubepress.git
     targetRevision: HEAD
     plugin:
-      name: tanka
       env:
         - name: TK_ENV
           value: dote
