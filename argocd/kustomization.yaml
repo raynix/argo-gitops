@@ -3,12 +3,11 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - upstream.yaml
-
-patchesStrategicMerge:
-  - patch.yaml
+- upstream.yaml
 
 configMapGenerator:
-  - name: cmp-tanka
-    files:
-      - plugin.yaml
+- files:
+  - plugin.yaml
+  name: cmp-tanka
+patches:
+- path: patch.yaml
