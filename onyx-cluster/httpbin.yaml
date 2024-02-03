@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: httpbin
+  namespace: argocd
+spec:
+  destination:
+    namespace: httpbin
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: httpbin
+    repoURL: https://github.com/raynix/argo-gitops.git
+    targetRevision: HEAD
+    plugin:
+      env:
+        - name: TK_ENV
+          value: default
+  syncPolicy:
+    automated:
+      prune: true
