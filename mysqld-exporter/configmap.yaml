@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  my.cnf: |
+    [client]
+    host=192.168.1.51
+    user=mysqld-exporter
+    password=mysqld-exporter
+kind: ConfigMap
+metadata:
+  name: my-cnf

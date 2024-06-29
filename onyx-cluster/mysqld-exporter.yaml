@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysqld-exporter
+  namespace: argocd
+spec:
+  destination:
+    namespace: mysqld-exporter
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: mysqld-exporter
+    repoURL: https://github.com/raynix/argo-gitops.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

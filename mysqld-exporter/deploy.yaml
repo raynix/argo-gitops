@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysqld-exporter
+  name: mysqld-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqld-exporter
+  template:
+    metadata:
+      labels:
+        app: mysqld-exporter
+    spec:
+      containers:
+      - args:
+        - --config.my-cnf=/etc/mysql/my.cnf
+        - --collect.engine_innodb_status
+        - --collect.binlog_size
+        - --collect.global_status
+        - --collect.global_variables
+        - --collect.info_schema.innodb_metrics
+        - --collect.info_schema.processlist
+        - --collect.info_schema.tables
+        - --collect.info_schema.tablestats
+        - --collect.info_schema.userstats
+        - --collect.perf_schema.eventswaits
+        - --collect.perf_schema.file_events
+        - --collect.perf_schema.indexiowaits
+        - --collect.perf_schema.tableiowaits
+        - --collect.perf_schema.tablelocks
+        - --collect.perf_schema.eventsstatements
+        image: docker.io/prom/mysqld-exporter:v0.15.1
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http-metrics
+            scheme: HTTP
+        name: mysqld-exporter
+        ports:
+        - containerPort: 9104
+          name: http-metrics
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http-metrics
+            scheme: HTTP
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        volumeMounts:
+          - name: my-cnf-volume
+            mountPath: /etc/mysql
+      serviceAccount: mysqld-exporter
+      volumes:
+        - name: my-cnf-volume
+          configMap:
+            name: my-cnf
+
+
