@@ -56,7 +56,6 @@ spec:
         volumeMounts:
           - name: my-cnf-volume
             mountPath: /etc/mysql
-      serviceAccount: mysqld-exporter
       volumes:
         - name: my-cnf-volume
           configMap:
