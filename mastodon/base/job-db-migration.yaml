@@ -2,6 +2,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  annotations:
+    # set to trigger before a sync starts
+    argocd.argoproj.io/hook: PreSync
+    # delete the existing one before sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
   name: mastodon-db-migrate
   labels:
     app: mastodon-db-migrate
