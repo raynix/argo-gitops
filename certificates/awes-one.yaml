@@ -20,6 +20,7 @@ spec:
   dnsNames:
     - awes.one
     - argo.awes.one
+    - feedi.awes.one
     - grafana.awes.one
     - httpbin.awes.one
     - luckybirdie.awes.one
