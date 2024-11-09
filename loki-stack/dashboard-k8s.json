@@ -94,9 +94,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -165,9 +163,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -237,9 +233,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -309,9 +303,7 @@
       "options": {
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -376,9 +368,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -442,9 +432,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -508,9 +496,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -575,9 +561,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -643,9 +627,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -711,9 +693,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -2085,7 +2065,7 @@
             "uid": "000000004"
           },
           "exemplar": true,
-          "expr": "avg by (node) (irate(node_cpu_seconds_total{node=~\"knode.+\", mode=\"idle\"}[5m]))",
+          "expr": "avg by (node) (irate(node_cpu_seconds_total{node=~\"(knode|cosmos).*\", mode=\"idle\"}[5m]))",
           "interval": "",
           "legendFormat": "{{ kubernetes_node }}",
           "refId": "A"
@@ -2184,7 +2164,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_memory_MemAvailable_bytes{node=~\"knode.+\"}",
+          "expr": "node_memory_MemAvailable_bytes{node=~\"(knode|cosmos).*\"}",
           "interval": "",
           "legendFormat": "{{ node }}",
           "range": true,
@@ -2309,7 +2289,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_filesystem_free_bytes{node=~\"knode.+\", device=~\"/dev/.*\"}",
+          "expr": "node_filesystem_free_bytes{node=~\"(knode|cosmos).*\", device=~\"/dev/.*\"}",
           "interval": "",
           "legendFormat": "{{node}}:{{device}}",
           "range": true,
@@ -2467,17 +2447,7 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "",
   "title": "My K8s Cluster",
