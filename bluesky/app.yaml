@@ -29,7 +29,7 @@ spec:
               protocol: TCP
           envFrom:
             - secretRef:
-                name: bluesky-secrets
+                name: bluesky
           env:
             - name: PDS_BLOBSTORE_DISK_LOCATION
               value: /pds/blocks
