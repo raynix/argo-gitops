@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bluesky
+  name: bluesky
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bluesky
+  template:
+    metadata:
+      labels:
+        app: bluesky
+    spec:
+      containers:
+        image: ghcr.io/bluesky-social/pds:0.4.67
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http-node
+            scheme: HTTP
+        name: pds
+        ports:
+          - containerPort: 3000
+            name: http-node
+            protocol: TCP
+        envFrom:
+          - secretRef:
+              name: bluesky-secrets
+        env:
+          - name: PDS_BLOBSTORE_DISK_LOCATION
+            value: /pds/blocks
+          - name: PDS_BLOBSTORE_DISK_TMP_LOCATION
+            value: /pds/temp
+          - name: PDS_BSKY_APP_VIEW_DID
+            value: did:web:api.bsky.app
+          - name: PDS_BSKY_APP_VIEW_URL
+            value: https://api.bsky.app
+          - name: PDS_CRAWLERS
+            value: https://bsky.network
+          - name: PDS_DATA_DIRECTORY
+            value: /pds
+          - name: PDS_DID_PLC_URL
+            value: https://plc.directory
+          - name: PDS_HOSTNAME
+            value: bsky.awes.one
+          - name: PDS_REPORT_SERVICE_DID
+            value: did:plc:ar7c4by46qjdydhdevvrndac
+          - name: PDS_REPORT_SERVICE_URL
+            value: https://mod.bsky.app
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http-node
+            scheme: HTTP
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+        volumeMounts:
+          - name: bluesky-volume
+            mountPath: /pds
+      volumes:
+        - name: bluesky-volume
+          persistentVolumeClaim:
+            name: bluesky
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bluesky
+spec:
+  ports:
+    - name: http-web
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: bluesky

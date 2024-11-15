@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: bluesky
+spec:
+  gateways:
+    - istio-system/awes-gateway
+  hosts:
+    - bsky.awes.one
+  http:
+    - name: web
+      route:
+        - destination:
+            host: bluesky
