@@ -17,18 +17,18 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                - amd64
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
       securityContext:
         fsGroup: 991
         runAsGroup: 991
         runAsUser: 991
       containers:
         - name: web
-          image: ghcr.io/mastodon/mastodon:v3.3.0
+          image: ghcr.io/mastodon/mastodon-streaming:v4.3.1
           command:
             - node
             - ./streaming
