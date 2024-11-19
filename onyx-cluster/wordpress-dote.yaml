@@ -28,7 +28,7 @@ spec:
             - name: TK_ENV
               value: "{{.path.basename}}"
       destination:
-        server: "{{.cluster.address}}"
+        server: https://kubernetes.default.svc
         namespace: "wordpress-{{.path.basename}}"
       syncPolicy:
         automated:
