@@ -1,21 +1,35 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: wordpress-dote
+  name: wordpress-sites
   namespace: argocd
 spec:
-  destination:
-    namespace: wordpress-dote
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: tanka
-    repoURL: https://github.com/raynix/kubepress.git
-    targetRevision: HEAD
-    plugin:
-      env:
-        - name: TK_ENV
-          value: dote
-  syncPolicy:
-    automated:
-      prune: true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/raynix/kubepress.git
+        revision: HEAD
+        files:
+          - path: tanka/environments/*
+          - path: tanka/environments/raynix
+            exclude: true
+  template:
+    metadata:
+      name: "wordpress-{{.path.basename}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/raynix/kubepress.git
+        targetRevision: HEAD
+        path: "{{index .path.segments 0}}"
+        plugin:
+          env:
+            - name: TK_ENV
+              value: "{{.path.basename}}"
+      destination:
+        server: "{{.cluster.address}}"
+        namespace: "wordpress-{{.path.basename}}"
+      syncPolicy:
+        automated:
+          prune: true
