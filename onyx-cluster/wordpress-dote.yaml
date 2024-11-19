@@ -10,7 +10,7 @@ spec:
     - git:
         repoURL: https://github.com/raynix/kubepress.git
         revision: HEAD
-        files:
+        directories:
           - path: tanka/environments/*
           - path: tanka/environments/raynix
             exclude: true
