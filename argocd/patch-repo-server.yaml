@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-repo-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-repo-server
+    spec:
+      containers:
+        # for tanka plugin
+        - name: cmp
+          image: curlimages/curl:latest
+          command:
+            - sh
+            - -c
+            - |
+              cd /home/argocd/cmp-server/plugins && \
+              curl -Lo jb "https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v0.5.1/jb-linux-amd64" && \
+              curl -Lo tk "https://github.com/grafana/tanka/releases/download/v0.25.0/tk-linux-amd64" && \
+              chmod +x jb tk && \
+              /var/run/argocd/argocd-cmp-server
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999
+          volumeMounts:
+            - mountPath: /var/run/argocd
+              name: var-files
+            - mountPath: /home/argocd/cmp-server/plugins
+              name: plugins
+            - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+              subPath: plugin.yaml
+              name: cmp-tanka
+      volumes:
+        # for tanka plugin
+        - name: cmp-tanka
+          configMap:
+            name: cmp-tanka
