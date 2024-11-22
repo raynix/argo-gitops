@@ -7,28 +7,27 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/raynix/kubepress.git
-        revision: HEAD
-        directories:
-          - path: tanka/environments/dote
-          - path: tanka/environments/raynix
+    - list:
+        elements:
+          - name: dote
+          - name: raynix
+
   template:
     metadata:
-      name: "wordpress-{{.path.basename}}"
+      name: "wordpress-{{.name}}"
     spec:
       project: default
       source:
         repoURL: https://github.com/raynix/kubepress.git
         targetRevision: HEAD
-        path: "{{index .path.segments 0}}"
+        path: tanka
         plugin:
           env:
             - name: TK_ENV
-              value: "{{.path.basename}}"
+              value: "{{.name}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "wordpress-{{.path.basename}}"
+        namespace: "wordpress-{{.name}}"
       syncPolicy:
         automated:
           prune: true
