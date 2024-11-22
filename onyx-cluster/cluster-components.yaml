@@ -12,6 +12,9 @@ spec:
           - name: argocd
           - name: argo-istio
             namespace: argocd
+          - name: bayleaves
+            path: .
+            repoURL: https://github.com/raynix/bay-leaves.git
           - name: mysqld-exporter
           - name: cert-manager
           - name: yopass
@@ -22,7 +25,6 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/raynix/argo-gitops.git
         targetRevision: HEAD
         path: "{{.name}}"
       destination:
@@ -34,5 +36,8 @@ spec:
           - CreateNamespace=true
   templatePatch: |
     spec:
+      source:
+        path: {{ if (hasKey . "path")}}{{.path}}{{else}}{{.name}}{{end}}
+        repoURL: {{ if (hasKey . "repoURL")}}{{.repoURL}}{{else}}https://github.com/raynix/argo-gitops.git{{end}}
       destination:
-        namespace: {{ if (hasKey . "namespace")}}{{ .namespace}}{{else}}{{.name}}{{end}}
+        namespace: {{ if (hasKey . "namespace")}}{{.namespace}}{{else}}{{.name}}{{end}}
