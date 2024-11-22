@@ -9,6 +9,7 @@ spec:
   generators:
     - list:
         elements:
+          - name: argocd
           - name: argo-istio
             namespace: argocd
           - name: mysqld-exporter
@@ -26,6 +27,7 @@ spec:
         path: "{{.name}}"
       destination:
         server: https://kubernetes.default.svc
+        namespace: "{{.name}}"
       syncPolicy:
         automated:
           prune: true
@@ -34,4 +36,6 @@ spec:
   templatePatch: |
     spec:
       destination:
-        namespace: {{ if (hasKey . "namespace")}}{{ .namespace}}{{else}}{{.name}}{{end}}
+      {{- if (hasKey . "namespace")}}
+        namespace: {{ .namespace}}
+      {{- end}}
