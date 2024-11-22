@@ -34,4 +34,4 @@ spec:
   templatePatch: |
     spec:
       destination:
-        namespace: {{ with .namespace }}{{.namespace}}{{ else }}{{.name}}{{ end }}
+        namespace: {{ with .namespace }}{{.}}{{ else }}{{.name}}{{ end }}
