@@ -27,6 +27,7 @@ spec:
       source:
         targetRevision: HEAD
         path: "{{.name}}"
+        repoURL: https://github.com/raynix/argo-gitops.git
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
@@ -38,6 +39,8 @@ spec:
     spec:
       source:
         path: {{ if (hasKey . "path")}}{{.path}}{{else}}{{.name}}{{end}}
-        repoURL: {{ if (hasKey . "repoURL")}}{{.repoURL}}{{else}}https://github.com/raynix/argo-gitops.git{{end}}
+        {{- if (hasKey . "repoURL")}}
+        repoURL: {{.repoURL}}
+        {{- end}}
       destination:
         namespace: {{ if (hasKey . "namespace")}}{{.namespace}}{{else}}{{.name}}{{end}}
