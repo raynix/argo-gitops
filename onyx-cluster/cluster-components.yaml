@@ -9,9 +9,9 @@ spec:
   generators:
     - list:
         elements:
-          - path: mysqld-exporter
-          - path: cert-manager
-          - path: yopass
+          - name: mysqld-exporter
+          - name: cert-manager
+          - name: yopass
 
   template:
     metadata:
