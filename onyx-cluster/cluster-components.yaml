@@ -9,6 +9,7 @@ spec:
   generators:
     - list:
         elements:
+          - name: argocd
           - name: argo-istio
             namespace: argocd
           - name: mysqld-exporter
