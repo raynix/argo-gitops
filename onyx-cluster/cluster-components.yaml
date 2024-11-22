@@ -9,6 +9,8 @@ spec:
   generators:
     - list:
         elements:
+          - name: argo-istio
+            namespace: argocd
           - name: mysqld-exporter
           - name: cert-manager
           - name: yopass
@@ -24,9 +26,12 @@ spec:
         path: "{{.name}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{.name}}"
       syncPolicy:
         automated:
           prune: true
         syncOptions:
           - CreateNamespace=true
+  templatePatch: |
+    spec:
+      destination:
+        namespace: {{ if .namespace }}{{.namespace}}{{ else }}{{.name}}{{ end }}
