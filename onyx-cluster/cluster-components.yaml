@@ -7,25 +7,24 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/raynix/argo-gitops.git
-        revision: HEAD
-        directories:
+    - list:
+        elements:
           - path: mysqld-exporter
           - path: cert-manager
           - path: yopass
+
   template:
     metadata:
-      name: "{{.path.basename}}"
+      name: "{{.name}}"
     spec:
       project: default
       source:
         repoURL: https://github.com/raynix/argo-gitops.git
         targetRevision: HEAD
-        path: "{{.path.basename}}"
+        path: "{{.name}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{.path.basename}}"
+        namespace: "{{.name}}"
       syncPolicy:
         automated:
           prune: true
