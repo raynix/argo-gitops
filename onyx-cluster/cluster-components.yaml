@@ -12,7 +12,7 @@ spec:
           - name: argocd
           - name: argo-istio
             namespace: argocd
-          - name: bayleaves
+          - name: bay-leaves
             path: .
             repoURL: https://github.com/raynix/bay-leaves.git
           - name: mysqld-exporter
