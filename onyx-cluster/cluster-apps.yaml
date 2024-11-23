@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-components
+  name: cluster-apps
   namespace: argocd
 spec:
   goTemplate: true
@@ -9,11 +9,11 @@ spec:
   generators:
     - list:
         elements:
-          - name: argocd
-          - name: argo-istio
-            namespace: argocd
-          - name: mysqld-exporter
-          - name: cert-manager
+          - name: bay-leaves
+            path: .
+            repoURL: https://github.com/raynix/bay-leaves.git
+          - name: bluesky
+          - name: yopass
 
   template:
     metadata:
