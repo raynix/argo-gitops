@@ -12,8 +12,10 @@ spec:
           - name: argocd
           - name: argo-istio
             namespace: argocd
-          - name: mysqld-exporter
           - name: cert-manager
+          - name: certificates
+            namespace: istio-system
+          - name: mysqld-exporter
 
   template:
     metadata:
