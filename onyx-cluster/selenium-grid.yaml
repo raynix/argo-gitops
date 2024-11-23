@@ -19,9 +19,17 @@ spec:
         chromeNode:
           enabled: true
           replicas: 2
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
         firefoxNode:
           enabled: true
           replicas: 2
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
         edgeNode:
           enabled: false
   syncPolicy:
