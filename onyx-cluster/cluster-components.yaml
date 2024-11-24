@@ -16,6 +16,8 @@ spec:
           - name: certificates
             namespace: istio-system
           - name: mysqld-exporter
+          - name: reflector
+            namespace: kube-system
 
   template:
     metadata:
