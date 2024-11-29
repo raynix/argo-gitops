@@ -27,6 +27,15 @@ spec:
         targetRevision: HEAD
         path: dummy
         repoURL: https://github.com/raynix/argo-gitops.git
+        kustomize:
+          patches:
+            - target:
+                kind: Deployment
+                name: dummy
+              patch: |-
+                - op: replace
+                  path: /metadata/name
+                  value: {{.name}}-{{.project}}
       destination:
         namespace: "dummy-{{.project}}"
         server: https://kubernetes.default.svc
