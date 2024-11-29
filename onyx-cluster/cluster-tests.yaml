@@ -28,6 +28,7 @@ spec:
         path: dummy
         repoURL: https://github.com/raynix/argo-gitops.git
       destination:
+        namespace: "dummy-{{.project}}"
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
