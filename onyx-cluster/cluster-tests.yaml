@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-tests
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - name: dummy-a
+                - name: dummy-b
+          - list:
+              elements:
+                - project: alpha
+                - project: beta
+
+  template:
+    metadata:
+      name: "{{.name}}-in-{{.project}}"
+    spec:
+      project: "{{.project}}"
+      source:
+        targetRevision: HEAD
+        path: dummy
+        repoURL: https://github.com/raynix/argo-gitops.git
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
