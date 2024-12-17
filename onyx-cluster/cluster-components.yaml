@@ -18,6 +18,8 @@ spec:
           - name: mysqld-exporter
           - name: reflector
             namespace: kube-system
+          - name: metrics-server
+            namespace: kube-system
 
   template:
     metadata:
