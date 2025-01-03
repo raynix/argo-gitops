@@ -12,7 +12,6 @@ spec:
           - name: bay-leaves
             path: .
             repoURL: https://github.com/raynix/bay-leaves.git
-          - name: bluesky
           - name: rusty-sonar
             path: .kustomize/raynix
             repoURL: https://github.com/raynix/rusty-sonar.git
