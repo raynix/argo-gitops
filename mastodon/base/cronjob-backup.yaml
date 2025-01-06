@@ -18,11 +18,11 @@ spec:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
-                - matchExpressions:
-                  - key: kubernetes.io/arch
-                    operator: In
-                    values:
-                    - amd64
+                  - matchExpressions:
+                      - key: kubernetes.io/arch
+                        operator: In
+                        values:
+                          - amd64
           securityContext:
             fsGroup: 991
             runAsGroup: 991
@@ -34,7 +34,7 @@ spec:
                 secretName: backup-gcp-sa
           containers:
             - name: backup-tool
-              image: ghcr.io/raynix/backup:v0.21
+              image: ghcr.io/raynix/backup:v0.38
               command:
                 - /bin/bash
                 - -c
