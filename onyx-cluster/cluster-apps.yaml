@@ -19,6 +19,9 @@ spec:
             path: .kustomize/sausl.ink
             repoURL: https://github.com/raynix/saus.git
           - name: yopass
+  ignoreApplicationDifferences:
+    # to allow turnning off auto-sync temporarily
+    - jsonPointers: ["/spec/syncPolicy", "/spec/source/targetRevision"]
 
   template:
     metadata:
@@ -36,6 +39,7 @@ spec:
           prune: true
         syncOptions:
           - CreateNamespace=true
+          - RespectIgnoreDifferences=true
   templatePatch: |
     spec:
       source:

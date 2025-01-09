@@ -9,3 +9,7 @@ data:
     hs.status = "Healthy"
     hs.message = "Controller doesn't report resource status"
     return hs
+  resource.customizations.ignoreDifferences.networking.istio.io_VirtualService:
+    |-
+    jqPathExpressions:
+      - ".spec.http[]?.route[]?.weight"
