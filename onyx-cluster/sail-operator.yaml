@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sail-operator
+  namespace: argocd
+spec:
+  destination:
+    namespace: sail-operator
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: chart
+    repoURL: https://github.com/istio-ecosystem/sail-operator
+    targetRevision: 0.2.0
+    helm:
+      values: |
+        # https://github.com/istio-ecosystem/sail-operator/blob/release-0.2/chart/values.yaml
+        name: sailoperator
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
