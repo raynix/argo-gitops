@@ -20,6 +20,8 @@ spec:
             namespace: kube-system
           - name: metrics-server
             namespace: kube-system
+          - name: gateway-api
+            namespace: kube-system
 
   template:
     metadata:
