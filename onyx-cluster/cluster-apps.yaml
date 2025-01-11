@@ -19,10 +19,13 @@ spec:
             path: .kustomize/sausl.ink
             repoURL: https://github.com/raynix/saus.git
           - name: yopass
+          - name: word-squad
+            repoURL: https://github.com/raynix/word-squad.git
+            path: .kustomize
+
   ignoreApplicationDifferences:
     # to allow turnning off auto-sync temporarily
     - jsonPointers: ["/spec/syncPolicy", "/spec/source/targetRevision"]
-
   template:
     metadata:
       name: "{{.name}}"
