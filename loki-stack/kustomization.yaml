@@ -9,6 +9,7 @@ resources:
   - pv.yaml
   - pvc.yaml
   - virtual-service.yaml
+  - http-route.yaml
   - helm-charts.yaml
 
 configMapGenerator:
@@ -16,14 +17,14 @@ configMapGenerator:
     namespace: grafana
     options:
       labels:
-        grafana_datasource: 'yes'
+        grafana_datasource: "yes"
     files:
       - datasources.json
   - name: dashboards
     namespace: grafana
     options:
       labels:
-        grafana_dashboard: 'yes'
+        grafana_dashboard: "yes"
     files:
       - dashboard-test.json
       - dashboard-k8s.json
