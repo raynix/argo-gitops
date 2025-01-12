@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   parentRefs:
-    - name: awes-gateway
+    - name: kubernetes-gateway
   hostnames:
     - argo.awes.one
   rules:
