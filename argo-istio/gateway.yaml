@@ -38,6 +38,12 @@ spec:
       protocol: HTTPS
       port: 443
       hostname: "*.awes.one"
+      allowedRoutes:
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              domain: awes.one
       tls:
         certificateRefs:
           - kind: Secret
