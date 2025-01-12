@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.istio.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  parentRefs:
+    - name: awes-gateway
+  hostnames:
+    - argo.awes.one
+  rules:
+    - backendRefs:
+        - name: argocd-server
+          port: 80

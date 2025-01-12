@@ -29,7 +29,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: awes-gateway
+  name: istio-gateway
   namespace: istio-system
 spec:
   gatewayClassName: istio
@@ -47,3 +47,31 @@ spec:
       protocol: HTTP
       port: 80
       hostname: "*.awes.one"
+
+    - name: dote-https
+      protocol: HTTPS
+      port: 443
+      hostname: "dote.blog"
+      tls:
+        certificateRefs:
+          - kind: Secret
+            group: ""
+            name: wordpress-dote-cert
+    - name: dote-http
+      protocol: HTTP
+      port: 80
+      hostname: "dote.blog"
+
+    - name: raynix-https
+      protocol: HTTPS
+      port: 443
+      hostname: "raynix.info"
+      tls:
+        certificateRefs:
+          - kind: Secret
+            group: ""
+            name: wordpress-raynix-cert
+    - name: raynix-http
+      protocol: HTTP
+      port: 80
+      hostname: "raynix.info"
