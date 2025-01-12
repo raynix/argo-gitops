@@ -39,11 +39,10 @@ spec:
       port: 443
       hostname: "*.awes.one"
       allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
         namespaces:
-          from: Selector
-          selector:
-            matchLabels:
-              domain: awes.one
+          from: All
       tls:
         certificateRefs:
           - kind: Secret
@@ -53,6 +52,11 @@ spec:
       protocol: HTTP
       port: 80
       hostname: "*.awes.one"
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: All
 
     - name: dote-https
       protocol: HTTPS
