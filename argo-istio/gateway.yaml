@@ -24,3 +24,26 @@ spec:
         protocol: HTTP
       tls:
         httpsRedirect: true
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: awes-gateway
+  namespace: istio-system
+spec:
+  gatewayClassName: istio
+  listeners:
+    - name: awes-https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.awes.one"
+      tls:
+        certificateRefs:
+          - kind: Secret
+            group: ""
+            name: awes-one-cert
+    - name: awes-http
+      protocol: HTTP
+      port: 80
+      hostname: "*.awes.one"
