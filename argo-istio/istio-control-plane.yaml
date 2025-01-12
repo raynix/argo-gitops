@@ -13,7 +13,7 @@ kind: Istio
 metadata:
   name: default
 spec:
-  version: v1.23.4
+  version: v1.23.3
   namespace: istio-system
   updateStrategy:
     type: RevisionBased
