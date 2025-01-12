@@ -116,4 +116,4 @@ spec:
           from: Selector
           selector:
             matchLabels:
-              kubernetes.io/metadata.name: wordpress-dote
+              kubernetes.io/metadata.name: wordpress-raynix
