@@ -11,3 +11,5 @@ varReference:
     kind: Deployment
   - path: spec/template/spec/affinity/podAntiAffinity/preferredDuringSchedulingIgnoredDuringExecution/podAffinityTerm/labelSelector/matchExpressions/values
     kind: Deployment
+  - path: spec/hostnames
+    kind: HTTPRoute
