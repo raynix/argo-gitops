@@ -101,3 +101,21 @@ spec:
           - kind: Secret
             group: ""
             name: wordpress-raynix-cert
+
+    - name: saus-https
+      protocol: HTTPS
+      port: 443
+      hostname: "sausl.ink"
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: saus
+      tls:
+        certificateRefs:
+          - kind: Secret
+            group: ""
+            name: saus-cert
