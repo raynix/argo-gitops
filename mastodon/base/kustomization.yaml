@@ -10,8 +10,6 @@ resources:
   - sidekiq-deploy.yaml
   - streaming-deploy.yaml
   - job-db-migration.yaml
-  - gateway.yaml
-  - virtual-service.yaml
   - cronjob-media-remove-orphans.yaml
   - cronjob-backup.yaml
   - http-route.yaml
