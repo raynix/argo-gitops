@@ -1,12 +1,3 @@
-apiVersion: install.istio.io/v1alpha1
-kind: IstioOperator
-metadata:
-  name: control-plane-1-22
-  namespace: istio-system
-spec:
-  profile: minimal
-  revision: 1-22
-
 ---
 apiVersion: sailoperator.io/v1alpha1
 kind: Istio
