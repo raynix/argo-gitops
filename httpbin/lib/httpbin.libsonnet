@@ -48,7 +48,5 @@
       }),
 
     service: $.util.serviceFor(self.deployment),
-    gateway: mytools.gatewayFor(c.name, c.cert, [c.host]),
-    vs: mytools.virtualServiceFor(c.name, c.name, [c.host]),
   },
 }
