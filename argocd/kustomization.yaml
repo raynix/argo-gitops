@@ -10,6 +10,7 @@ configMapGenerator:
       - plugin.yaml
     name: cmp-tanka
 patches:
+  - path: patch-server.yaml
   - path: patch-repo-server.yaml
   - path: patch-cm.yaml
   - path: patch-cmd-params-cm.yaml
