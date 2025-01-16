@@ -8,7 +8,6 @@ resources:
   - ns.yaml
   - pv.yaml
   - pvc.yaml
-  - virtual-service.yaml
   - http-route.yaml
   - helm-charts.yaml
 
