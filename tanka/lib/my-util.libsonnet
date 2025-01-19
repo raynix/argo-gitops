@@ -10,7 +10,7 @@ local k = import 'k.libsonnet';
     apiVersion: 'argoproj.io/v1alpha1',
     kind: 'Application',
     metadata: {
-      name: app.name,
+      name: '%s-%s' % [app.type, app.name],
       namespace: 'argocd',
     },
     spec: {
