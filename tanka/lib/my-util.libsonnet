@@ -33,12 +33,12 @@ local k = import 'k.libsonnet';
         path: this.traverse(app, ['path'], 'tanka'),
         repoURL: this.traverse(app, ['repoURL'], 'https://github.com/raynix/argo-gitops.git'),
         targetRevision: 'HEAD',
-        plugin: if self.path == 'tanka' then {
+        [if !std.objectHas(app, 'path') then 'plugin']: {
           env: [
             { name: 'TK_ENV', value: app.type },
             { name: 'TK_TLA', value: 'name=%s' % [app.name] },
           ],
-        } else {},
+        },
       },
       syncPolicy: {
         automated: {
