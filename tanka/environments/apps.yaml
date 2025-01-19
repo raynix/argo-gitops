@@ -9,3 +9,8 @@
   path: .kustomize/sausl.ink
   repoURL: https://github.com/raynix/saus.git
   type: app
+- name: word-squad
+  domain: wordsquad.awes.one
+  path: .kustomize
+  repoURL: https://github.com/raynix/word-squad.git
+  type: app

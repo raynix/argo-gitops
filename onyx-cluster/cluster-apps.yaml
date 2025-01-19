@@ -16,9 +16,6 @@ spec:
             path: .kustomize/raynix
             repoURL: https://github.com/raynix/rusty-sonar.git
           - name: yopass
-          - name: word-squad
-            repoURL: https://github.com/raynix/word-squad.git
-            path: .kustomize
 
   ignoreApplicationDifferences:
     # to allow turnning off auto-sync temporarily
