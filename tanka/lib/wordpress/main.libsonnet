@@ -10,8 +10,8 @@ local k = import '../k.libsonnet';
       redis: 'redis:6.2.8-alpine3.17',
       backup: 'ghcr.io/raynix/backup:v0.37',
       domain: 'changeme.com',
-      volume_ip: '10.0.0.0',
-      volume_path: '/path/to/wordpress',
+      nfs_base_path: '/var/nfs/k8s/',
+      volume_ip: '192.168.1.51',
       volume_size: '10Gi',
       istio: false,
       dynamic_volume: false,
@@ -42,7 +42,7 @@ local k = import '../k.libsonnet';
     volume_size: c.volume_size,
   } else myutil.static_volume(c.name, $.namespace.metadata.name) {
     volume_ip: c.volume_ip,
-    volume_path: c.volume_path,
+    volume_path: c.nfs_base_path + c.domain,
     volume_size: c.volume_size,
   },
 

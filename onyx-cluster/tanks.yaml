@@ -1,21 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: httpbin
+  name: tanka
   namespace: argocd
 spec:
   destination:
-    namespace: httpbin
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: httpbin
+    path: tanka
     repoURL: https://github.com/raynix/argo-gitops.git
     targetRevision: HEAD
     plugin:
       env:
         - name: TK_ENV
-          value: default
+          value: onyx
+        - name: TK_TLA
+          value: name=onyx
   syncPolicy:
     automated:
       prune: true
