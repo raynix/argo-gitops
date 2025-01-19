@@ -1,10 +1,20 @@
 local k = import 'k.libsonnet';
 
 {
+  local this = self,
   local container = k.core.v1.container,
   local pvc = k.core.v1.persistentVolumeClaim,
   local pv = k.core.v1.persistentVolume,
   local sc = k.storage.v1.storageClass,
+
+  traverse(obj, keys, default=''):
+    if std.objectHas(obj, keys[0]) then
+      if std.length(keys) == 1 then
+        obj[keys[0]]
+      else
+        this.traverse(obj[keys[0]], keys[1:], default=default)
+    else
+      default,
 
   argocd_application(app): {
     apiVersion: 'argoproj.io/v1alpha1',
@@ -20,20 +30,24 @@ local k = import 'k.libsonnet';
       },
       project: 'default',
       source: {
-        path: 'tanka',
-        repoURL: 'https://github.com/raynix/argo-gitops.git',
+        path: this.traverse(app, ['path'], 'tanka'),
+        repoURL: this.traverse(app, ['repoURL'], 'https://github.com/raynix/argo-gitops.git'),
         targetRevision: 'HEAD',
-        plugin: {
+        plugin: if self.path == 'tanka' then {
           env: [
             { name: 'TK_ENV', value: app.type },
             { name: 'TK_TLA', value: 'name=%s' % [app.name] },
           ],
-        },
+        } else {},
       },
       syncPolicy: {
         automated: {
           prune: true,
         },
+        syncOptions: [
+          'CreateNamespace=true',
+          'RespectIgnoreDifferences=true',
+        ],
       },
     },
   },

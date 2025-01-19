@@ -1,8 +1,11 @@
 - name: dote
   domain: dote.blog
   type: wordpress
-  has_secret: true
 - name: raynix
   domain: raynix.info
   type: wordpress
-  has_secret: true
+- name: saus
+  domain: sausl.ink
+  path: .kustomize/sausl.ink
+  repoURL: https://github.com/raynix/saus.git
+  type: app

@@ -15,9 +15,6 @@ spec:
           - name: rusty-sonar
             path: .kustomize/raynix
             repoURL: https://github.com/raynix/rusty-sonar.git
-          - name: saus
-            path: .kustomize/sausl.ink
-            repoURL: https://github.com/raynix/saus.git
           - name: yopass
           - name: word-squad
             repoURL: https://github.com/raynix/word-squad.git
