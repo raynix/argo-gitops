@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/grafana/jsonnet-libs.git",
+          "subdir": "ksonnet-util"
+        }
+      },
+      "version": "81276dc16831be896821b44b03a6405b4af8a8b4",
+      "sum": "0y3AFX9LQSpfWTxWKSwoLgbt0Wc9nnCwhMH2szKzHv0="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/grafana/jsonnet-libs.git",
+          "subdir": "tanka-util"
+        }
+      },
+      "version": "81276dc16831be896821b44b03a6405b4af8a8b4",
+      "sum": "ShSIissXdvCy1izTCDZX6tY7qxCoepE5L+WJ52Hw7ZQ="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/jsonnet-libs/docsonnet.git",
+          "subdir": "doc-util"
+        }
+      },
+      "version": "6ac6c69685b8c29c54515448eaca583da2d88150",
+      "sum": "BrAL/k23jq+xy9oA7TWIhUx07dsA/QLm3g7ktCwe//U="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/jsonnet-libs/istio-libsonnet.git",
+          "subdir": "1.23"
+        }
+      },
+      "version": "2c952fca69bc3b3183d248e4202cab415ff1d66b",
+      "sum": "kIPBHeF1elOhxaBP9Y3Vr1y/bxby4blc10t/NCScCuk="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/jsonnet-libs/k8s-libsonnet.git",
+          "subdir": "1.29"
+        }
+      },
+      "version": "f8b0d65c573f3b36040258fa69e90e13e7129083",
+      "sum": "i2w3hGbgQmaB73t5LJHSioPOVdYv8ZBvivHiDwZJVyI="
+    }
+  ],
+  "legacyImports": false
+}

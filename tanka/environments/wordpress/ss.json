@@ -1,0 +1,52 @@
+{
+  "raynix": {
+    "kind": "SealedSecret",
+    "apiVersion": "bitnami.com/v1alpha1",
+    "metadata": {
+      "name": "wordpress-secret",
+      "namespace": "wordpress-raynix",
+      "creationTimestamp": null
+    },
+    "spec": {
+      "template": {
+        "metadata": {
+          "name": "wordpress-secret",
+          "namespace": "wordpress-raynix",
+          "creationTimestamp": null
+        },
+        "data": null
+      },
+      "encryptedData": {
+        "WORDPRESS_DB_HOST": "AgAy28wiE0JNKM00XHNVzccgAHjxI4TeVAbgThpMSEz/aM/rNqJWJtxHMSpjQkMEq89uBakry1NddOCwyNCkQkN2kye5+DJB+iAUCTv4Qi43/T9iG9SrPA+oKNDfyyLPo1av5J+48m1u+0O6y9j8EcKClXd/IXUICxlwJT9yuF8PD/20DVRcqeXAJk0Win+Tj4TdCnmbmG3/TUeMQVlLERb4eGYRR9vCChiYYZtaL62QHGuwUOVSgUBLjGyB7DEYpFlHV5h235CD2eYn8mc9DovSqNutk/S32X3cbHC/1imKQxFBsctDDijC1EM/mAAZ5M1LpeIn9Gsl1tawJXjW4t4qjTRym2M9ehcobPz/4tyQKDWPTjH4bDN3DdhBtbKSAvFqRbay05YFfSFfJaMAPq1yULPOPaw7TpQtQjFcLz7AdYfw+/kL88hnRxt+VJcYTVxvBQh5LPFxGPDShlkc+PiU+EtjJwlba6OTaSc0RGuaStSX/b572YjvsfFT/rgufbXUDVKIiNJQ1MHzJponDI3Pw4EfvDXZFhnDrYd6k4Qpg4Ei70tcyEj0EdPOIJB8HV/mtUpSe/1vswV18rCya0WOwAksdEc8lTwhjqYrD3cFx5j7/ngvdME792QRNBnCEezhVA9WxWJ/I5gb6MuppAFY0yP6ifFy3sFc44DK9MpausMLvzIJhitQp0KLrbqZaoqqsQuAWmt6V8SJ0e0=",
+        "WORDPRESS_DB_NAME": "AgB2OiM936ivmshwk7v+IQyz7RiQfKSxd9yjMIoPypIVZS5jC7FIgScrZ9/7qwP0CUut46XkHnb/GgY2kUxNKC3puzpAXXQJRs62wR/aeCV1UhLUkYcgsvAG1fsZYxe8R+8ZCal22udwo82o3AEKN7wdFDWObYcM+KgLoRhkYSSbA94OK9F6wnx1Iv1P+nZZVRrEvtrY8P0UTyzNEvm/NktYU8su/7nxF/DxOYpKLGN9dVIdfUuKbHhvaBIqFXaBNwSbrNa8kQKtNT9E6TvA1LuQq5t+0dZdrSmdjGQjgNXg/REKusEE7KZ+mTParrXIgw15vfp3bkMVVW2ZYXFtldV0KtkotHc9FFTlJ9wq+cCYTHIkFpSuvKLqAX+UVZorjHvJLRCCP84125E7W+6N2PvR80Qf6uKHOP69UVj4Dvm6ycMXxhD54iUHvkWAmfU5P02KYOIlDEGx85//A61VLF3gM7o55sMmmirDsXLo9D+7O7xGOSTAMe9FgkPVfe/dbiP2UzfWYuEaVCUtVOXCujUYx6a0Q8aSXqy1XD3oblWjsAT0Lx96H/2vnVvrtIiFy197Ywt2Iqhj2/zP9OH5XdJvV/+sS+DiJ8tvzdcOPs6AqBcsXyMB1HPgutMyablLYRtrtp1F5YDUSkvmoHfVPb9wQDo91DDF/5NSHpi1PltboFXQAwlmyk6z9Fd6hjhmaHCLCoIx6PA=",
+        "WORDPRESS_DB_PASSWORD": "AgCixjpWn9zba3HMtWY+uwGj/uZqjHwKMw/oV9GkBJ7WCMwgkCPi0MQBugQJByedhISesbgJ/EVWrLr1P2I/VrcGueV2Y+9g2OJgHuei61l/psqmo2hkMTreyttbao/l3Jqgzk10NbT85oga5e+v8A6sPfnQbopY1OH5WRdKV7z/q639DoR0GZG67DHIvxF5jwmWJhjzlrdO/MQFkY8OM/u5otCtRzylMZcbmczmsearC505X0wKCw3VWeoZGhhy1alWxm6HYemFX1ks3AoJCGcFtdZhb25nTPr6hP5aLMlCPjIe9INXxI6C3b8kMGhhKsI5AsoN/6w0herqKflbpXSKawFnCsL41T6MYbXCDURqCWZollcE76kbLvQbyNi5UQVGHZ5DfTColNF22dvtryAkLYhO/1sJvb4oqBfFkFVhqF8i6hVgdUsQD4bEZU8TX1V5kYo0SIeQsS85543FVc0F6+noByS1KuuGsPvCpD2JGOKC6rsrnZaE+/dXWwMHjGoph5FCCpBgnInfRzr3GqCOJAjImVAjuml2Smo3PKri2AYb3J9qyEFIawJ9g7NdfAaPGRhb+PooyV6fg3VeT6sqBwzNw7N7Ph5kbCm6Og67M8fHv1DyhML1xu2jXwbQIhmXmstTkVIhwVPoibIWW9NQ7P7CwbKKHHEalu0rX1+6F+k2tortGthzZWndkXYfukx2TVxtFoQEpg==",
+        "WORDPRESS_DB_USER": "AgBvKXtoy+s4bHstad/VURZvY61Pmq2/Jixo/FoaDCA0YLeGux9rQQAgYlhjb9HTlfiTcjjWFqi6OfY4mA2hMo+r0PXvVFr32tdQCYFfi+H+bsvTY6h4K6YCGBzenZ12nBK3EO/Ya2/7t4Ias3GpbBd+Xy/3xNMKJGJ/DoV966VtKMri2zl9RwrGRXaslACuNfeeqeA0ATOT3X8eiDkemttXQKRhJFMjQQWzIX4C6Mv/heukfzbbAHKDXM317Jgv8HBNkb77LZ4iMmqJb01DsLT/AVJ4ASx4l7d31aLS7jxd+8nmWCiZ9lZw0Pc2mujGjvn8rY1ojGj314Z47AQ5mC9sY5pBBsnnfo5zlC6sHT8COIvx9bx3Xa8JgKOogu0BdXPOiJvjmKmt74iEZIwOCVnU1IadDEFuFY1XNn5MZZdCZNpcAl79cBAugM7yqZEctZJJ9aXHJbC4bkMjn137ksmxotEzewVAzJiyarx5I4fk5CdnrTU0oQa8S5iUNs6927UDIOhxRAxRhWuDqC/XXR3D6bYHzYQxAjolQw9pDaRqjuIpNAjIgBaYuepknEra4vfVE4574fX7lcyOgb/nU/des7E+URJtZftiaYjQ9GS8QNEbMrmfZfCxJB2uZNk/n659glIBD22YJLQveyKEU4psHPRk5BTvq1YJ3WmG3EJCPs6/EyEByUT6jzxPRn1XhyFRJMsbDR4="
+      }
+    }
+  },
+  "dote": {
+    "kind": "SealedSecret",
+    "apiVersion": "bitnami.com/v1alpha1",
+    "metadata": {
+      "name": "wordpress-secret",
+      "namespace": "wordpress-dote",
+      "creationTimestamp": null
+    },
+    "spec": {
+      "template": {
+        "metadata": {
+          "name": "wordpress-secret",
+          "namespace": "wordpress-dote",
+          "creationTimestamp": null
+        },
+        "data": null
+      },
+      "encryptedData": {
+        "WORDPRESS_DB_HOST": "AgCCmBb//uprFPzSqc7r5QcxZQw/MTG2c4alV2k5JAYDWeR7r/MLJpTSW7WsGsyRuWsgsKyFXDYLxu0J9As4W4o7oDuTUuqWSpgWKcBXU283GMcYK6+9uc3flzlWvh5gZVNcsZJxR4zbS1lzt/Z2QPf29hmf7J10UORW3jpqx+jZAHqb5boXZWSCpUg001ODe/+XtY9Xj5FgWcDJ6jRse1782nRXOcNZqQuEqKiQ/1ROhO2t2hJI9BOclgxx4Wnw0pTm6iezyLluJBFE5YjVSTX85gBg1CsP/p6zdceZkg/PpUYrlON22PDcwFecbF+K6XM1ysIdx9cnXjpysh/sg0w9bLnELOZNXX5mJHA7YR9Qyf/HHARnoL3nwEmJzYzsLLZ8jePcO1F2FUQx0tBWuylPlWEpA1Jo5DWyyeOhiKdyvMpaqHcfcLSF/5LWBQhDYEtpyn+tLAqdMkqShAAtcOX/QfCCtoueI2IFSHXKLQJjxDhazldYLT16hoTnncndDLYDcUJxpDyzkhNl3uGQrXFqwgC3pMCcXUuRhGJzPGTH6M5b+TmD2lyYMr71LusbtXMQgz6+5bjt7aBOuTvAJTdHWflwGxnyNXrR9z5yA0Ab+oS99K9kU4eCDD8A2MLMu9x5sh3TN5saylCySLVHLpPhmoNE6B58zkMLKEysfkYwfIuzBXtRkuvLy0GlzdI0mjDCCrKthYaMaU4QihM=",
+        "WORDPRESS_DB_NAME": "AgBxMXh8NiEFRgO+x+xyrooCzFc4CTryH3ykT9I9GuKfBn9iVLDdPm9yGqp0bayavVxWDC8dGbx5K2I0NQ8WQNNckJNSis+v6nsCLkjmFBwgjMK/AxCmPciQh6duqGM1NAERUfxoyEowbShF8ZyyV4oai9H9zYCDUvmrFZyHoTyaBQeQ09TJdAvFOfgS0aUTC/Lb4JlJiro9YdHB6KgqNtdZokHwPtDVli2Uy3EFK5MFW/ZP6ikKTjXmBncxjo8GXJ6Nqh8vB3uWBbaFPZmfrzE+or/eNw22Mn31TxRNarHuuiDkX9I5jqLiCzS6Qba62uQ77l/bnlTa50soMSdxI2ZRPgADZfnHNu/uK6EQxW56+xe2V+RUfFqJ3rSmDp5TBzUNIQL8NDetryQYRqY8S4V4SyajSBU5lsZIJzRaSSbRw5sZgN4Mp42w/hGluPWS25sIqNO/x13pCFlksHpdTJ/JW7lfqEsu7xsclRuxkwn9HOdwZoh4yyg2QuD2PHeDREJyODD8eSvu6TBsWC/pWUxM0ctKL9LT0lmmhMXOuGOb+qCQIsvkoJhGQSo1LlIPh5B2zTMx/YbXPMtWtqP4lp+ccQjYUOSjXtvBHWVs+pCM1hNpcuEa/X506Bq9RRWudYcIi2F/HYsoT8y8cEStavNIN3hLpgkvYkOF8/fPs64uDuRaIgfO1qEHuEPA4Xrn2qaOQMYt",
+        "WORDPRESS_DB_PASSWORD": "AgA136FghrrVXdgtp2mB52DZDW8Jf9v9DZPQYkLdaksERsoEN0nJCVWr2k5pslVRDaHeQlYkwPRv2owgGbb/3ud6PaJ/NpG63nQD91vA9PqOzlEm8j6mUPpyyWEpxzslNZ3xsjKPkOjDyadCMTRG5BEK3tqECGANKRuiCZpZn5qeNmQly5+YCqEGdqmXFdbaRBi8HGCLV2mGy55hWYqWy/SvMCOR9XMi8ZSlA+XsI9GCkvfItx6ydH93yKatwtiORB9nI9vA5Lig1kX2Rv1pG443/smKZYyQSf4nfAjBEb38QbVfpU1tw3ikFyCPZSNPb/XjpznIRZMO/7s3IXmBJW8UmnJrolchgtwZGVcz8ikbAedYEEPUtIhG6Q3BaQZTj1RAgUD+IwhUmD+FH3yJYdV8us+LUFQYcQbo+u6s5bjE51yL+LRbBHaga7bgHZTTfgGA+XyHuYwiioeu42Hpl5afWj7G+Aazh3JbGvQn0ZqgZYYikozAOIz7GyxXmBxhAhqpH+OL8rIteSf6QKpON6l1t1sV6lROfbGb1XV4G7Z/KkU6sz4PX5y33eZ76QMoO5uaWZY+8z7gS7KmRIX10t1DSRQj3Djjx2taBnfBnQHW6T+MJQYEUTQsIDj5hhpu+unBLrKV7n+tlg/WInKW0tY2rC3xfKhOGFQXQfNlM1vWECk/mCtT7tfpqn6sL5S8KXu+F/qZ",
+        "WORDPRESS_DB_USER": "AgB33OW9azvQ/4CDsk9J1fwID103UA+yekYuIkNSikodBWYJvdf2rBv6MO4aFxUMxQlgljKglW+4LenQ1HIQgRUQln4vCoVjZSH+osa0mzjO68GrTRrDCAcEbFCya1u7w7wfR8pM/lTc2Lv/wPFabpBK0h4PRpyGOpLqhfJ2uJkw8g3bBCmCuFbQcXVVIsM5+5t1+1iTBnvtm32D1UAr2m+MBVDGMFCIS5XOeFuHhOo3w+VyTSvfjOo3/bQu2DujRYs4CEc2qtPv/g58z9IR8hiGxB81HVm9bwXfIHYqJFIgwMiOy40lqJ2c4osPAHILQzgKo4QHiNS4Rw4cHuMpw6+LV+WTN2sWaCR+JIkwxxGjJtzkqSHkueS1QWCUz6C1bd+RnR78iIpnXjRQT4xcwnjsleBXXM4qGiX8O+E0AshY3tYzYGzbTMoXyKmCJ4W7V8bUoI9Rb2yFvOq0u12BdywOJaz3UrLn02M5e07Ma+Tjnm3G50lDTf40fO6txIUeK4NQ/qb5lv5orv9CcInBfDzA6qPGPpx2cH2NhAO+rMX+8+2RrgBlGyasl4UVfcHTMGhbbUS41Hnop/HzgY8q6PdQ0CprBu8QNdcg9RcTjWg5Tyq0wAeL44TeQSa1kZNMEmqxqg4jQ/UAu6cj0GLd5pqez5bvkqt17skZg20ezJTRXNMzmevT/xsgmbbxPO8e1U2eaJVB"
+      }
+    }
+  }
+}

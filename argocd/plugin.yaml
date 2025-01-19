@@ -7,8 +7,13 @@ metadata:
 spec:
   version: v0.25.0
   init:
-    command: [ "sh", "-c", "/home/argocd/cmp-server/plugins/jb install" ]
+    command: ["sh", "-c", "/home/argocd/cmp-server/plugins/jb install"]
   generate:
-    command: [ "sh", "-c", "/home/argocd/cmp-server/plugins/tk show environments/${ARGOCD_ENV_TK_ENV} --dangerous-allow-redirect" ]
+    command:
+      [
+        "sh",
+        "-c",
+        '/home/argocd/cmp-server/plugins/tk show environments/${ARGOCD_ENV_TK_ENV} --tla-str="$ARGOCD_ENV_TK_TLA" --dangerous-allow-redirect',
+      ]
   discover:
     fileName: "./environments/*/main.jsonnet"
