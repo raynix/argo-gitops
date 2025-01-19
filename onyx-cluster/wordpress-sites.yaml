@@ -9,7 +9,6 @@ spec:
   generators:
     - list:
         elements:
-          - name: dote
           - name: raynix
 
   template:
