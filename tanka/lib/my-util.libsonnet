@@ -23,7 +23,7 @@ local k = import 'k.libsonnet';
         path: 'tanka',
         repoURL: 'https://github.com/raynix/argo-gitops.git',
         targetRevision: 'HEAD',
-        plugins: {
+        plugin: {
           env: [
             { name: 'TK_ENV', value: app.type },
             { name: 'TK_TLA', value: 'name=%s' % [app.name] },
