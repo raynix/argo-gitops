@@ -59,7 +59,7 @@ local k = import 'k.libsonnet';
     kind: 'Gateway',
     metadata: {
       annotations: {
-        'networking.istio.io/service-typte': 'NodePort',
+        'networking.istio.io/service-type': 'NodePort',
       },
       name: 'kubernetes-gateway',
     },
