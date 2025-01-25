@@ -77,11 +77,7 @@ local k = import 'k.libsonnet';
                 kind: 'HTTPRoute',
               },
             ],
-            namespaces: {
-              from: {
-                from: 'ALL',
-              },
-            },
+            namespaces: { from: 'ALL' },
           },
           tls: {
             certificateRefs: [
