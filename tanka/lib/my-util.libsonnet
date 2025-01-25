@@ -77,7 +77,7 @@ local k = import 'k.libsonnet';
                 kind: 'HTTPRoute',
               },
             ],
-            namespaces: { from: 'ALL' },
+            namespaces: { from: 'All' },
           },
           tls: {
             certificateRefs: [
@@ -177,7 +177,7 @@ local k = import 'k.libsonnet';
       duration: '2160h0m0s',  // 90d
       renewBefore: '360h0m0s',  // 15d
       subject: {
-        organizations: domain,
+        organizations: [domain],
       },
       privateKey: {
         algorithm: 'RSA',
