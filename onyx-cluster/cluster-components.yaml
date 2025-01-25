@@ -13,8 +13,6 @@ spec:
           - name: argo-istio
             namespace: argocd
           - name: cert-manager
-          - name: certificates
-            namespace: istio-system
           - name: mysqld-exporter
           - name: reflector
             namespace: kube-system

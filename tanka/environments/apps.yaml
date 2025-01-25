@@ -14,3 +14,5 @@
   path: .kustomize
   repoURL: https://github.com/raynix/word-squad.git
   type: app
+- name: gateway
+  type: gateway

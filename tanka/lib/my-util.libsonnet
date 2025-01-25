@@ -52,6 +52,55 @@ local k = import 'k.libsonnet';
     },
   },
 
+  gateway(domains, sites): {
+    local site_domain(domains, site) =
+      [domain for domain in domains if std.endsWith(site.domain, domain)][0],
+    apiVersion: 'gateway.networking.k8s.io/v1beta1',
+    kind: 'Gateway',
+    metadata: {
+      annotations: {
+        'networking.istio.io/service-typte': 'NodePort',
+      },
+      name: 'kubernetes-gateway',
+    },
+    spec: {
+      gatewayClassName: 'istio',
+      listeners: [
+        {
+          name: site.name + '-https',
+          port: 443,
+          protocol: 'HTTPS',
+          hostname: site.domain,
+          allowedRoutes: [
+            {
+              kinds: [
+                {
+                  kind: 'HTTPRoute',
+                },
+              ],
+              namespaces: {
+                from: {
+                  from: 'ALL',
+                },
+              },
+            },
+          ],
+          tls: {
+            certificateRefs: [
+              {
+                kind: 'Secret',
+                group: '',
+                name: std.strReplace(site_domain(domains, site), '.', '-') + '-cert',
+              },
+            ],
+          },
+        }
+        for site in sites
+        if std.objectHas(site, 'domain')
+      ],
+    },
+  },
+
   http_route(service, domain, gateway, gateway_ns='istio-system'): {
     apiVersion: 'gateway.networking.k8s.io/v1beta1',
     kind: 'HTTPRoute',
@@ -123,26 +172,25 @@ local k = import 'k.libsonnet';
       pvc.spec.resources.withRequests({ storage: dv.volume_size }),
   },
 
-  certificate(name, namespace, domains): {
+  certificate(domain, sites): {
     apiVersion: 'cert-manager.io/v1',
     kind: 'Certificate',
     metadata: {
-      name: 'wordpress-' + name,
-      namespace: namespace,
+      name: domain,
     },
     spec: {
-      secretName: 'wordpress-' + name + '-cert',
+      secretName: std.strReplace(domain, '.', '-') + '-cert',
       duration: '2160h0m0s',  // 90d
       renewBefore: '360h0m0s',  // 15d
       subject: {
-        organizations: domains,
+        organizations: domain,
       },
       privateKey: {
         algorithm: 'RSA',
         size: 2048,
       },
       usages: ['server auth', 'client auth'],
-      dnsNames: domains,
+      dnsNames: [site.domain for site in sites if std.objectHas(site, 'domain') && std.endsWith(site.domain, domain)],
       issuerRef: {
         name: 'letsencrypt-issuer',
         kind: 'ClusterIssuer',

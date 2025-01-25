@@ -140,8 +140,6 @@ local k = import '../k.libsonnet';
       { name: 'http-wp', port: 8080, targetPort: 8080 },
     ]),
 
-  certificate: myutil.certificate(c.name, 'istio-system', [c.domain]),
-
   http_route: myutil.http_route($.service.metadata.name, c.domain, 'kubernetes-gateway'),
 
   redis_deploy:
