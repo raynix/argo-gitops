@@ -14,5 +14,20 @@
   path: .kustomize
   repoURL: https://github.com/raynix/word-squad.git
   type: app
+- name: argocd-istio
+  namespace: argocd
+  type: app
+  path: argocd-istio # specify the path if it's not handled by jsonnet
+  domain: argo.awes.one
+- name: loki-stack
+  namespace: loki
+  type: app
+  path: loki-stack
+  domain: grafana.awes.one
+- name: mastodon-awes-one
+  namespace: mastodon-awes-one
+  type: app
+  path: mastodon/awes.one
+  domain: awes.one
 - name: gateway
   type: gateway
