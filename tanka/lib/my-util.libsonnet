@@ -71,20 +71,18 @@ local k = import 'k.libsonnet';
           port: 443,
           protocol: 'HTTPS',
           hostname: site.domain,
-          allowedRoutes: [
-            {
-              kinds: [
-                {
-                  kind: 'HTTPRoute',
-                },
-              ],
-              namespaces: {
-                from: {
-                  from: 'ALL',
-                },
+          allowedRoutes: {
+            kinds: [
+              {
+                kind: 'HTTPRoute',
+              },
+            ],
+            namespaces: {
+              from: {
+                from: 'ALL',
               },
             },
-          ],
+          },
           tls: {
             certificateRefs: [
               {
