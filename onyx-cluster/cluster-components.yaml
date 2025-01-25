@@ -10,8 +10,6 @@ spec:
     - list:
         elements:
           - name: argocd
-          - name: argo-istio
-            namespace: argocd
           - name: cert-manager
           - name: mysqld-exporter
           - name: reflector
