@@ -59,3 +59,18 @@
   namespace: httpbin
   type: httpbin
   domain: httpbin.awes.one
+- name: bay-leaves
+  namespace: bay-leaves
+  type: app
+  path: .
+  repoURL: https://github.com/raynix/bay-leaves.git
+- name: rusty-sonar
+  namespace: rusty-sonar
+  type: app
+  path: .kustomize/raynix
+  repoURL: https://github.com/raynix/rusty-sonar.git
+- name: yopass
+  type: app
+  domain: yopass.awes.one
+  path: yopass
+  namespace: yopass

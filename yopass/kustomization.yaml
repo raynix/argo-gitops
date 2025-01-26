@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: yopass
 resources:
   - upstream.yaml
-  - virtualservice.yaml
+  - http-route.yaml
 
 images:
   - name: jhaals/yopass
