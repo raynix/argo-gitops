@@ -99,7 +99,7 @@ local k = import 'k.libsonnet';
     apiVersion: 'gateway.networking.k8s.io/v1beta1',
     kind: 'HTTPRoute',
     metadata: {
-      name: service,
+      name: service.metadata.name,
     },
     spec: {
       parentRefs: [{
@@ -110,8 +110,8 @@ local k = import 'k.libsonnet';
       hostnames: [domain],
       rules: [{
         backendRefs: [{
-          name: service,
-          port: 8080,
+          name: service.metadata.name,
+          port: service.spec.ports[0].port,
         }],
       }],
     },

@@ -140,7 +140,7 @@ local k = import '../k.libsonnet';
       { name: 'http-wp', port: 8080, targetPort: 8080 },
     ]),
 
-  http_route: myutil.http_route($.service.metadata.name, c.domain, 'kubernetes-gateway'),
+  http_route: myutil.http_route($.service, c.domain, 'kubernetes-gateway'),
 
   redis_deploy:
     deploy.new('redis', 1, [

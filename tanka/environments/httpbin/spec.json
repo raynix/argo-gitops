@@ -2,7 +2,7 @@
   "apiVersion": "tanka.dev/v1alpha1",
   "kind": "Environment",
   "metadata": {
-    "name": "environments/default"
+    "name": "environments/httpbin"
   },
   "spec": {
     "apiServer": "",
