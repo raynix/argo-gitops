@@ -19,6 +19,10 @@
   type: app
   path: argo-istio # specify the path if it's not handled by jsonnet
   domain: argo.awes.one
+- name: argocd
+  namespace: argocd
+  type: app
+  path: argocd
 - name: loki-stack
   namespace: loki
   type: app
