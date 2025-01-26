@@ -2,7 +2,7 @@
 GitOps with ArgoCD
 
 ## What is this for
-This is the repository I used to manage my home lab built with Kubernetes running on old laptops
+This is the repository for managing my home lab built with Kubernetes running on old laptops
 and gaming PCs. In the beginning this is just a pile of YAMLs and Helm templates. Gradually it's
 getting better organised and trasitioned to newer technologies such as Istio, ArgoCD Application Set,
 Jsonnet and Tanka. This repo is an example of Continuous Delivery using ArgoCD and git-ops pattern.

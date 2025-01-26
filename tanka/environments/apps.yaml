@@ -31,3 +31,7 @@
   domain: awes.one
 - name: gateway
   type: gateway
+- name: reflector
+  namespace: kube-system
+  type: component
+  path: reflector
