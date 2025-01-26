@@ -117,15 +117,24 @@ local k = import 'k.libsonnet';
     },
   },
 
-  readiness_probe(port, initial_delay_seconds=5, period_seconds=5):
-    container.readinessProbe.tcpSocket.withPort(port) +
-    container.readinessProbe.withInitialDelaySeconds(initial_delay_seconds) +
-    container.readinessProbe.withPeriodSeconds(period_seconds),
+  http_probe(port, path='/', initial_delay_seconds=15, period_seconds=15): {
+    initialDelaySeconds: initial_delay_seconds,
+    periodSeconds: period_seconds,
+    httpGet: {
+      path: path,
+      port: port,
+      scheme: 'HTTP',
+    },
+  },
 
-  liveness_probe(port, initial_delay_seconds=15, period_seconds=15):
-    container.livenessProbe.tcpSocket.withPort(port) +
-    container.livenessProbe.withInitialDelaySeconds(initial_delay_seconds) +
-    container.livenessProbe.withPeriodSeconds(period_seconds),
+  tcp_probe(port, initial_delay_seconds=15, period_seconds=15): {
+    initialDelaySeconds: initial_delay_seconds,
+    periodSeconds: period_seconds,
+    tcpSocket: {
+      port: port,
+    },
+  },
+
 
   static_volume(name, namespace): {
     local sv = self,

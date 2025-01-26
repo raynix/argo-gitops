@@ -38,12 +38,8 @@ function(name='httpbin') {
             memory: '500Mi',
           },
         },
-        livenessProbe: {
-          httpGet: { path: '/', port: $._config.port },
-        },
-        readinessProbe: {
-          httpGet: { path: '/', port: $._config.port },
-        },
+        livenessProbe: myutil.http_probe('http', '/status/200'),
+        readinessProbe: myutil.http_probe('http', '/status/200'),
       },
     ],
   ),

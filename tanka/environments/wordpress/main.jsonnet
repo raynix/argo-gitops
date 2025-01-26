@@ -6,10 +6,8 @@ local secrets = import 'ss.json';
 function(name) {
   data(app):: wp {
     _config+:: {
-      wordpress+: {
-        name: app.name,
-        domain: app.domain,
-      },
+      name: app.name,
+      domain: app.domain,
     },
 
     sealed_secret: secrets[app.name],

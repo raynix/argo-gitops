@@ -1,27 +1,25 @@
 local k = import '../k.libsonnet';
 {
   _config:: {
-    wordpress: {
-      name: 'wp',
-      replicas: 2,
-      history: 3,
-      image: 'wordpress:php8.1-fpm-alpine',
-      nginx: 'nginx:1.22.1',
-      redis: 'redis:6.2.8-alpine3.17',
-      backup: 'ghcr.io/raynix/backup:v0.37',
-      domain: 'changeme.com',
-      nfs_base_path: '/var/nfs/k8s/',
-      volume_ip: '192.168.1.51',
-      volume_size: '10Gi',
-      istio: false,
-      dynamic_volume: false,
-    },
+    name: 'wp',
+    replicas: 2,
+    history: 3,
+    image: 'wordpress:php8.1-fpm-alpine',
+    nginx: 'nginx:1.22.1',
+    redis: 'redis:6.2.8-alpine3.17',
+    backup: 'ghcr.io/raynix/backup:v0.37',
+    domain: 'changeme.com',
+    nfs_base_path: '/var/nfs/k8s/',
+    volume_ip: '192.168.1.51',
+    volume_size: '10Gi',
+    istio: false,
+    dynamic_volume: false,
   },
 
   local myutil = import '../my-util.libsonnet',
   local namespace = k.core.v1.namespace,
   local cm = k.core.v1.configMap,
-  local c = $._config.wordpress,
+  local c = $._config,
   local cron = k.batch.v1.cronJob,
   local deploy = k.apps.v1.deployment,
   local svc = k.core.v1.service,
@@ -31,6 +29,10 @@ local k = import '../k.libsonnet';
   local volume = k.core.v1.volume,
   local volume_www = volume.fromPersistentVolumeClaim('var-www', 'wordpress'),
   local volume_gsa = volume.fromSecret('gcp-sa', 'backup-gcp-sa'),
+  local labels = {
+    app: 'wordpress',
+    domain: c.domain,
+  },
 
   namespace: namespace.new('wordpress-' + c.name),
 
@@ -68,72 +70,130 @@ local k = import '../k.libsonnet';
   deploy:
     deploy.new('wordpress', c.replicas, [
       // wordpress-php-fpm container
-      container.new('wordpress', c.image) +
-      container.withEnvFrom([
-        secret_ref.withName('wordpress-secret'),
-      ]) +
-      container.withEnv([
-        {
-          name: 'WORDPRESS_TABLE_PREFIX',
-          value: 'wp_',
-        },
-      ]) +
-      container.withPorts([{ name: 'fpm', containerPort: 9000 }]) +
-      container.withVolumeMounts([
-        volume_mount.new('php-config-volume', '/usr/local/etc/php/php.ini') +
-        volume_mount.withSubPath('php.ini'),
-        volume_mount.new(volume_www.name, '/var/www/html'),
-      ]) +
-      container.resources.withRequests({ cpu: '400m', memory: '400Mi' }) +
-      myutil.readiness_probe('fpm') +
-      myutil.liveness_probe('fpm'),
-      // nginx container
-      container.new('nginx', c.nginx) +
-      container.withPorts([{ name: 'http', containerPort: 8080 }]) +
-      container.withVolumeMounts([
-        volume_mount.new('wordpress-nginx-config-volume', '/etc/nginx/conf.d'),
-        volume_mount.new('nginx-config-volume', '/etc/nginx/nginx.conf') +
-        volume_mount.withSubPath('nginx.conf'),
-        volume_mount.new(volume_www.name, '/var/www/html'),
-      ]) +
-      container.resources.withRequests({ cpu: '100m', memory: '100Mi' }) +
-      myutil.readiness_probe('http') +
-      myutil.liveness_probe('http'),
-    ], { domain: c.domain }) +
-    deploy.spec.withRevisionHistoryLimit(c.history) +
-    deploy.spec.strategy.withType('RollingUpdate') +
-    deploy.spec.strategy.rollingUpdate.withMaxSurge('50%') +
-    deploy.spec.strategy.rollingUpdate.withMaxUnavailable(0) +
-    deploy.spec.template.spec.securityContext.withRunAsUser(65534) +
-    deploy.spec.template.spec.securityContext.withRunAsGroup(65534) +
-    deploy.spec.template.spec.affinity.podAntiAffinity.withPreferredDuringSchedulingIgnoredDuringExecution([
-      {
-        weight: 100,
-        podAffinityTerm: {
-          labelSelector: {
-            matchExpressions: [
-              {
-                key: 'app',
-                operator: 'In',
-                values: ['wordpress'],
-              },
-              {
-                key: 'domain',
-                operator: 'In',
-                values: [c.domain],
-              },
-            ],
+      container.new('wordpress', c.image) {
+        envFrom: [
+          {
+            secret_ref: {
+              name: 'wordpress-secret',
+            },
           },
-          topologyKey: 'kubernetes.io/hostname',
+        ],
+        env: [
+          {
+            name: 'WORDPRESS_TABLE_PREFIX',
+            value: 'wp_',
+          },
+        ],
+        ports: [
+          {
+            name: 'fpm',
+            containerPort: 9000,
+            protocol: 'TCP',
+          },
+        ],
+        volumeMounts: [
+          {
+            name: 'php-config-volume',
+            mountPath: '/usr/local/etc/php/php.ini',
+            subPath: 'php.ini',
+          },
+          {
+            name: volume_www.name,
+            mountPath: '/var/www/html',
+          },
+        ],
+        resources: {
+          requests: {
+            cpu: '400m',
+            memory: '400Mi',
+          },
         },
       },
-    ]) +
-    deploy.spec.template.spec.withVolumes([
-      volume.fromConfigMap('nginx-config-volume', $.nginx_config.metadata.name),
-      volume.fromConfigMap('wordpress-nginx-config-volume', $.wp_config.metadata.name),
-      volume.fromConfigMap('php-config-volume', $.php_config.metadata.name),
-      volume_www,
-    ]),
+      // nginx container
+      container.new('nginx', c.nginx) {
+        ports: [
+          {
+            name: 'http',
+            containerPort: 8080,
+            protocol: 'TCP',
+          },
+        ],
+        volumeMounts: [
+          {
+            name: 'wordpress-nginx-config-volume',
+            mountPath: '/etc/nginx/conf.d',
+          },
+          {
+            name: 'nginx-config-volume',
+            mountPath: '/etc/nginx/nginx.conf',
+            subPath: 'nginx.conf',
+          },
+          {
+            name: volume_www.name,
+            mountPath: '/var/www/html',
+          },
+        ],
+        resources: {
+          requests: {
+            cpu: '100m',
+            memory: '100Mi',
+          },
+        },
+        readinessProbe: myutil.http_probe('http', '/wp-login.php'),
+        livenessProbe: myutil.http_probe('http', '/wp-login.php'),
+      },
+    ], { domain: c.domain }) {
+      spec+: {
+        revisionHistoryLimit: c.history,
+        strategy: {
+          type: 'RollingUpdate',
+          rollingUpdate: {
+            maxSurge: '50%',
+            maxUnavailable: 0,
+          },
+        },
+        template+: {
+          spec+: {
+            securityContext: {
+              runAsUser: 65534,
+              runAsGroup: 65534,
+            },
+            affinity: {
+              podAntiAffinity: {
+                preferredDuringSchedulingIgnoredDuringExecution: [
+                  {
+                    weight: 100,
+                    podAffinityTerm: {
+                      labelSelector: {
+                        matchExpressions: [
+                          {
+                            key: 'app',
+                            operator: 'In',
+                            values: ['wordpress'],
+                          },
+                          {
+                            key: 'domain',
+                            operator: 'In',
+                            values: [c.domain],
+                          },
+                        ],
+                      },
+                      topologyKey: 'kubernetes.io/hostname',
+                    },
+                  },
+                ],
+              },
+            },
+            volumes: [
+              volume.fromConfigMap('nginx-config-volume', $.nginx_config.metadata.name),
+              volume.fromConfigMap('wordpress-nginx-config-volume', $.wp_config.metadata.name),
+              volume.fromConfigMap('php-config-volume', $.php_config.metadata.name),
+              volume_www,
+            ],
+          },
+        },
+      },
+    },
 
   service:
     svc.new($.deploy.metadata.name, $.deploy.spec.selector.matchLabels, [
@@ -144,12 +204,27 @@ local k = import '../k.libsonnet';
 
   redis_deploy:
     deploy.new('redis', 1, [
-      container.new('redis', c.redis) +
-      container.withPorts([{ name: 'redis', containerPort: 6379 }]) +
-      myutil.readiness_probe('redis') +
-      myutil.liveness_probe('redis') +
-      container.resources.withRequests({ cpu: '100m', memory: '400Mi' }) +
-      container.resources.withLimits({ cpu: '1.0', memory: '1Gi' }),
+      container.new('redis', c.redis) {
+        ports: [
+          {
+            name: 'redis',
+            containerPort: 6379,
+            protocol: 'TCP',
+          },
+        ],
+        resources: {
+          requests: {
+            cpu: '100m',
+            memory: '400Mi',
+          },
+          limits: {
+            cpu: '1.0',
+            memory: '1Gi',
+          },
+          readinessProbe: myutil.tcp_probe('redis'),
+          livenessProbe: myutil.tcp_probe('redis'),
+        },
+      },
     ], { app: 'redis' }),
 
   redis_service:
