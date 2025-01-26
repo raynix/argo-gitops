@@ -43,3 +43,7 @@
   namespace: kube-system
   type: component
   path: gateway-api
+- name: httpbin
+  namespace: httpbin
+  type: httpbin
+  domain: httpbin.awes.one
