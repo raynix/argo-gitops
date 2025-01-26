@@ -73,7 +73,7 @@ local k = import '../k.libsonnet';
       container.new('wordpress', c.image) {
         envFrom: [
           {
-            secret_ref: {
+            secretRef: {
               name: 'wordpress-secret',
             },
           },
