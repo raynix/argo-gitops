@@ -11,7 +11,6 @@ function(name='httpbin') {
   local namespace = k.core.v1.namespace,
   local deployment = k.apps.v1.deployment,
   local container = k.core.v1.container,
-  local port = k.core.v1.containerPort,
 
   namespace: namespace.new(name) {
     metadata+: {
@@ -25,14 +24,27 @@ function(name='httpbin') {
     name=name,
     replicas=1,
     containers=[
-      container.new(name, $._config.image)
-      + container.withPorts([port.new(name, $._config.port)])
-      + k.util.resourcesRequests('100m', '100Mi')
-      + k.util.resourcesLimits('500m', '500Mi')
-      + container.livenessProbe.httpGet.withPath('/')
-      + container.livenessProbe.httpGet.withPort($._config.port)
-      + container.readinessProbe.httpGet.withPath('/')
-      + container.readinessProbe.httpGet.withPort($._config.port),
+      container.new(name, $._config.image) {
+        ports: [
+          { name: name, containerPort: $._config.port, protocol: 'TCP' },
+        ],
+        resources: {
+          requests: {
+            cpu: '100m',
+            memory: '100Mi',
+          },
+          limits: {
+            cpu: '500m',
+            memory: '500Mi',
+          },
+        },
+        livenessProbe: {
+          httpGet: { path: '/', port: $._config.port },
+        },
+        readinessProbe: {
+          httpGet: { path: '/', port: $._config.port },
+        },
+      },
     ],
   ),
 
