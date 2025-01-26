@@ -47,6 +47,9 @@
   type: component
   namespace: mysqld-exporter
   path: mysqld-exporter
+- name: cert-manager
+  namespace: cert-manager
+  type: component
 - name: httpbin
   namespace: httpbin
   type: httpbin

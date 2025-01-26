@@ -10,7 +10,6 @@ spec:
     - list:
         elements:
           - name: argocd
-          - name: cert-manager
 
   template:
     metadata:
