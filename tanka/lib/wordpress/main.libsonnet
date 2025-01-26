@@ -218,12 +218,13 @@ local k = import '../k.libsonnet';
             memory: '400Mi',
           },
           limits: {
-            cpu: '1.0',
+            cpu: '500m',
             memory: '1Gi',
           },
-          readinessProbe: myutil.tcp_probe('redis'),
-          livenessProbe: myutil.tcp_probe('redis'),
+
         },
+        readinessProbe: myutil.tcp_probe('redis'),
+        livenessProbe: myutil.tcp_probe('redis'),
       },
     ], { app: 'redis' }),
 
