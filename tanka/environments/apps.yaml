@@ -43,6 +43,10 @@
   namespace: kube-system
   type: component
   path: gateway-api
+- name: mysqld-exporter
+  type: component
+  namespace: mysqld-exporter
+  path: mysqld-exporter
 - name: httpbin
   namespace: httpbin
   type: httpbin
