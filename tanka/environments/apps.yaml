@@ -35,3 +35,11 @@
   namespace: kube-system
   type: component
   path: reflector
+- name: metrics-server
+  namespace: kube-system
+  type: component
+  path: metrics-server
+- name: gateway-api
+  namespace: kube-system
+  type: component
+  path: gateway-api

@@ -12,10 +12,6 @@ spec:
           - name: argocd
           - name: cert-manager
           - name: mysqld-exporter
-          - name: metrics-server
-            namespace: kube-system
-          - name: gateway-api
-            namespace: kube-system
 
   template:
     metadata:
