@@ -4,6 +4,9 @@
 - name: raynix
   domain: raynix.info
   type: wordpress
+- name: postiz
+  domain: postiz.awes.one
+  type: app
 - name: saus
   domain: sausl.ink
   path: .kustomize/sausl.ink
