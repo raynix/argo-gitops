@@ -20,6 +20,11 @@ function(name='postiz') {
     replicas=1,
     containers=[
       container.new(name, $._config.image) {
+        envFrom: [
+          {
+            secretRef: { name: 'postiz-env' },
+          },
+        ],
         ports: [
           { name: name, containerPort: $._config.port, protocol: 'TCP' },
         ],
