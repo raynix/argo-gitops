@@ -13,7 +13,7 @@ function(name='postiz') {
   local container = k.core.v1.container,
 
   namespace: namespace.new(name),
-  pvc: myutil.dynamic_pvc(name, name) { volume_size: '10Gi' },
+  pvc: myutil.dynamic_volume(name, name) { volume_size: '10Gi' },
 
   deployment: deployment.new(
     name=name,
@@ -62,7 +62,7 @@ function(name='postiz') {
             {
               name: 'postiz-uploads',
               persistentVolumeClaim: {
-                claimName: $.pvc.metadata.name,
+                claimName: $.pvc.pvc.metadata.name,
               },
             },
           ],
