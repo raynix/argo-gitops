@@ -1,4 +1,5 @@
-local k = import '../k.libsonnet';
+local k = import 'ksonnet-util/kausal.libsonnet';
+
 {
   _config:: {
     name: 'wp',
@@ -27,8 +28,7 @@ local k = import '../k.libsonnet';
   local secret_ref = k.core.v1.envFromSource.secretRef,
   local volume_mount = k.core.v1.volumeMount,
   local volume = k.core.v1.volume,
-  local volume_www = volume.fromPersistentVolumeClaim('var-www', 'wordpress'),
-  local volume_gsa = volume.fromSecret('gcp-sa', 'backup-gcp-sa'),
+
   local labels = {
     app: 'wordpress',
     domain: c.domain,
@@ -47,6 +47,9 @@ local k = import '../k.libsonnet';
     volume_path: c.nfs_base_path + c.domain,
     volume_size: c.volume_size,
   },
+
+  local volume_www = volume.fromPersistentVolumeClaim('var-www', $.wp_volume.pvc.metadata.name),
+  local volume_gsa = volume.fromSecret('gcp-sa', 'backup-gcp-sa'),
 
   backup_job:
     cron.new('backup', '0 14 * * 0', [
@@ -195,10 +198,7 @@ local k = import '../k.libsonnet';
       },
     },
 
-  service:
-    svc.new($.deploy.metadata.name, $.deploy.spec.selector.matchLabels, [
-      { name: 'http-wp', port: 8080, targetPort: 8080 },
-    ]),
+  service: k.util.serviceFor($.deploy),
 
   http_route: myutil.http_route($.service, c.domain, 'kubernetes-gateway'),
 
@@ -228,9 +228,5 @@ local k = import '../k.libsonnet';
       },
     ], { app: 'redis' }),
 
-  redis_service:
-    svc.new($.redis_deploy.metadata.name, $.redis_deploy.spec.selector.matchLabels, [
-      { name: 'tcp-redis', port: 6379, targetPort: 6379 },
-    ]),
-
+  redis_service: k.util.serviceFor($.redis_deploy),
 }

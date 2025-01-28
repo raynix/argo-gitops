@@ -135,7 +135,6 @@ local k = import 'k.libsonnet';
     },
   },
 
-
   static_volume(name, namespace): {
     local sv = self,
     volume_size:: '1Gi',
@@ -155,7 +154,7 @@ local k = import 'k.libsonnet';
       pv.spec.csi.withVolumeHandle('wordpress-' + name + '-csi') +
       pv.spec.csi.withVolumeAttributes({ server: sv.volume_ip, share: sv.volume_path }),
 
-    wordpress_volume_claim:
+    pvc:
       pvc.new('wordpress') +
       pvc.metadata.withNamespace(namespace) +
       pvc.spec.withAccessModes('ReadWriteMany') +
@@ -167,8 +166,8 @@ local k = import 'k.libsonnet';
     volume_size:: '1Gi',
     storage_class:: 'csi-nfs',
 
-    wordpress_volume_claim:
-      pvc.new('wordpress-' + name) +
+    pvc:
+      pvc.new('pvc-' + name) +
       pvc.metadata.withNamespace(namespace) +
       pvc.spec.withAccessModes('ReadWriteMany') +
       pvc.spec.withStorageClassName(dv.storage_class) +
