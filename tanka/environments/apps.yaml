@@ -6,7 +6,7 @@
   type: wordpress
 - name: postiz
   domain: postiz.awes.one
-  type: app
+  type: postiz
 - name: saus
   domain: sausl.ink
   path: .kustomize/sausl.ink
