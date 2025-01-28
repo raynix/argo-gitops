@@ -164,7 +164,7 @@ local k = import 'k.libsonnet';
   dynamic_volume(name, namespace): {
     local dv = self,
     volume_size:: '1Gi',
-    storage_class:: 'csi-nfs',
+    storage_class:: 'nfs-csi',
 
     pvc:
       pvc.new('pvc-' + name) +
