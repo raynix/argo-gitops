@@ -38,8 +38,8 @@ function(name='postiz') {
         volumeMounts: [
           {
             name: 'postiz-config-volume',
-            mountPath: '/config/.env',
-            subPath: '.env',
+            mountPath: '/config/postiz.env',
+            subPath: 'postiz.env',
           },
           {
             name: 'postiz-uploads',
