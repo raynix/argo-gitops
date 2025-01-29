@@ -38,8 +38,8 @@ function(name='postiz') {
             memory: '2Gi',
           },
         },
-        livenessProbe: myutil.http_probe(name, '/'),
-        readinessProbe: myutil.http_probe(name, '/'),
+        livenessProbe: myutil.http_probe(),
+        readinessProbe: myutil.http_probe(),
         volumeMounts: [
           {
             name: 'postiz-config-volume',
@@ -99,8 +99,8 @@ function(name='postiz') {
           },
 
         },
-        readinessProbe: myutil.tcp_probe('redis'),
-        livenessProbe: myutil.tcp_probe('redis'),
+        readinessProbe: myutil.tcp_probe(port='redis'),
+        livenessProbe: myutil.tcp_probe(port='redis'),
       },
     ], { app: 'redis' }),
 

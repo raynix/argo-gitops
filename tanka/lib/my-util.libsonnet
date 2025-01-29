@@ -121,7 +121,7 @@ local k = import 'k.libsonnet';
     },
   },
 
-  http_probe(port, path='/', initial_delay_seconds=15, period_seconds=15): {
+  http_probe(port='http', path='/', initial_delay_seconds=15, period_seconds=15): {
     initialDelaySeconds: initial_delay_seconds,
     periodSeconds: period_seconds,
     httpGet: {
@@ -131,7 +131,7 @@ local k = import 'k.libsonnet';
     },
   },
 
-  tcp_probe(port, initial_delay_seconds=15, period_seconds=15): {
+  tcp_probe(port='tcp', initial_delay_seconds=15, period_seconds=15): {
     initialDelaySeconds: initial_delay_seconds,
     periodSeconds: period_seconds,
     tcpSocket: {

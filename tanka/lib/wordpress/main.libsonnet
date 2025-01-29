@@ -142,8 +142,8 @@ local k = import 'ksonnet-util/kausal.libsonnet';
             memory: '100Mi',
           },
         },
-        readinessProbe: myutil.http_probe('http', '/wp-login.php'),
-        livenessProbe: myutil.http_probe('http', '/wp-login.php'),
+        readinessProbe: myutil.http_probe(path='/wp-login.php'),
+        livenessProbe: myutil.http_probe(path='/wp-login.php'),
       },
     ], { domain: c.domain }) {
       spec+: {
@@ -223,8 +223,8 @@ local k = import 'ksonnet-util/kausal.libsonnet';
           },
 
         },
-        readinessProbe: myutil.tcp_probe('redis'),
-        livenessProbe: myutil.tcp_probe('redis'),
+        readinessProbe: myutil.tcp_probe(port='redis'),
+        livenessProbe: myutil.tcp_probe(port='redis'),
       },
     ], { app: 'redis' }),
 
