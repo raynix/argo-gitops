@@ -95,7 +95,7 @@ local k = import 'k.libsonnet';
     },
   },
 
-  http_route(service, domain, gateway, gateway_ns='istio-system'): {
+  http_route(service, domain, gateway, gateway_ns='istio-system', port_name='http'): {
     apiVersion: 'gateway.networking.k8s.io/v1beta1',
     kind: 'HTTPRoute',
     metadata: {
@@ -109,10 +109,14 @@ local k = import 'k.libsonnet';
       }],
       hostnames: [domain],
       rules: [{
-        backendRefs: [{
-          name: service.metadata.name,
-          port: service.spec.ports[0].port,
-        }],
+        backendRefs: [
+          {
+            name: port.name,
+            port: port.port,
+          }
+          for port in service.spec.ports
+          if port.name == port_name
+        ],
       }],
     },
   },

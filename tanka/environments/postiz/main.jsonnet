@@ -26,7 +26,7 @@ function(name='postiz') {
           },
         ],
         ports: [
-          { name: name, containerPort: $._config.port, protocol: 'TCP' },
+          { name: 'http', containerPort: $._config.port, protocol: 'TCP' },
         ],
         resources: {
           requests: {
@@ -106,7 +106,7 @@ function(name='postiz') {
 
   redis_service: k.util.serviceFor($.redis_deploy),
 
-  http_route: myutil.http_route($.service, $._config.host, 'kubernetes-gateway'),
+  http_route: myutil.http_route($.service, $._config.host, 'kubernetes-gateway', port_name=name + '-http'),
 
   sealed_secret: import 'ss.json',
 }

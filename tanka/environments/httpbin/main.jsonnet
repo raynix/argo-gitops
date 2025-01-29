@@ -26,7 +26,7 @@ function(name='httpbin') {
     containers=[
       container.new(name, $._config.image) {
         ports: [
-          { name: name, containerPort: $._config.port, protocol: 'TCP' },
+          { name: 'http', containerPort: $._config.port, protocol: 'TCP' },
         ],
         resources: {
           requests: {
@@ -46,5 +46,5 @@ function(name='httpbin') {
 
   service: k.util.serviceFor(self.deployment),
 
-  http_route: myutil.http_route($.service, $._config.host, 'kubernetes-gateway'),
+  http_route: myutil.http_route($.service, $._config.host, 'kubernetes-gateway', port_name=name + '-http'),
 }

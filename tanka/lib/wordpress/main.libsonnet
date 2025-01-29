@@ -198,11 +198,9 @@ local k = import 'ksonnet-util/kausal.libsonnet';
       },
     },
 
-  service: svc.new($.deploy.metadata.name, $.deploy.spec.selector.matchLabels, [
-    { name: 'http-wp', port: 8080, targetPort: 8080 },
-  ]),
+  service: k.util.serviceFor($.deploy),
 
-  http_route: myutil.http_route($.service, c.domain, 'kubernetes-gateway'),
+  http_route: myutil.http_route($.service, c.domain, 'kubernetes-gateway', port_name='nginx-http'),
 
   redis_deploy:
     deploy.new('redis', 1, [
