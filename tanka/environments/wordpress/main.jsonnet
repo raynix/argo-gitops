@@ -1,6 +1,6 @@
 local tk = import 'tanka-util/main.libsonnet';
 local wp = import 'wordpress/main.libsonnet';
-local sites = std.parseYaml(importstr '../apps.yaml');
+local manifests = std.parseYaml(importstr '../apps.yaml');
 local secrets = import 'ss.json';
 
 function(name) {
@@ -21,7 +21,7 @@ function(name) {
 
   envs: {
     [app.name]: $.env(app)
-    for app in sites
+    for app in manifests.wordpress
     if app.name == name
   },
 }
