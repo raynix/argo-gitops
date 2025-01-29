@@ -1,75 +1,68 @@
-- name: dote
-  domain: dote.blog
-  type: wordpress
-- name: raynix
-  domain: raynix.info
-  type: wordpress
-- name: postiz
-  domain: postiz.awes.one
-  type: postiz
-- name: saus
-  domain: sausl.ink
-  path: .kustomize/sausl.ink
-  repoURL: https://github.com/raynix/saus.git
-  type: app
-- name: word-squad
-  domain: wordsquad.awes.one
-  path: .kustomize
-  repoURL: https://github.com/raynix/word-squad.git
-  type: app
-- name: argocd
-  namespace: argocd
-  type: app
-  path: argocd
-  domain: argo.awes.one
-- name: loki-stack
-  namespace: loki
-  type: app
-  path: loki-stack
-  domain: grafana.awes.one
-- name: mastodon-awes-one
-  namespace: mastodon-awes-one
-  type: app
-  path: mastodon/awes.one
-  domain: awes.one
-- name: gateway
-  type: gateway
-- name: reflector
-  namespace: kube-system
-  type: component
-  path: reflector
-- name: metrics-server
-  namespace: kube-system
-  type: component
-  path: metrics-server
-- name: gateway-api
-  namespace: kube-system
-  type: component
-  path: gateway-api
-- name: mysqld-exporter
-  type: component
-  namespace: mysqld-exporter
-  path: mysqld-exporter
-- name: cert-manager
-  namespace: cert-manager
-  type: component
-  path: cert-manager
-- name: httpbin
-  namespace: httpbin
-  type: httpbin
-  domain: httpbin.awes.one
-- name: bay-leaves
-  namespace: bay-leaves
-  type: app
-  path: .
-  repoURL: https://github.com/raynix/bay-leaves.git
-- name: rusty-sonar
-  namespace: rusty-sonar
-  type: app
-  path: .kustomize/raynix
-  repoURL: https://github.com/raynix/rusty-sonar.git
-- name: yopass
-  type: app
-  domain: yopass.awes.one
-  path: yopass
-  namespace: yopass
+gateway:
+  - name: gateway
+
+wordpress:
+  - name: dote
+    domain: dote.blog
+  - name: raynix
+    domain: raynix.info
+
+postiz:
+  - name: postiz
+    domain: postiz.awes.one
+
+app:
+  - name: saus
+    domain: sausl.ink
+    path: .kustomize/sausl.ink
+    repoURL: https://github.com/raynix/saus.git
+  - name: word-squad
+    domain: wordsquad.awes.one
+    path: .kustomize
+    repoURL: https://github.com/raynix/word-squad.git
+  - name: argocd
+    namespace: argocd
+    path: argocd
+    domain: argo.awes.one
+  - name: loki-stack
+    namespace: loki
+    path: loki-stack
+    domain: grafana.awes.one
+  - name: mastodon-awes-one
+    namespace: mastodon-awes-one
+    path: mastodon/awes.one
+    domain: awes.one
+  - name: bay-leaves
+    namespace: bay-leaves
+    path: .
+    repoURL: https://github.com/raynix/bay-leaves.git
+  - name: rusty-sonar
+    namespace: rusty-sonar
+    path: .kustomize/raynix
+    repoURL: https://github.com/raynix/rusty-sonar.git
+  - name: yopass
+    domain: yopass.awes.one
+    path: yopass
+    namespace: yopass
+
+component:
+  - name: reflector
+    namespace: kube-system
+    path: reflector
+  - name: metrics-server
+    namespace: kube-system
+    path: metrics-server
+  - name: gateway-api
+    namespace: kube-system
+    path: gateway-api
+  - name: mysqld-exporter
+    namespace: mysqld-exporter
+    path: mysqld-exporter
+  - name: cert-manager
+    namespace: cert-manager
+    path: cert-manager
+
+httpbin:
+  - name: httpbin
+    namespace: httpbin
+    domain: httpbin.awes.one
