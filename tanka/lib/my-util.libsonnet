@@ -111,7 +111,7 @@ local k = import 'k.libsonnet';
       rules: [{
         backendRefs: [
           {
-            name: port.name,
+            name: service.metadata.name,
             port: port.port,
           }
           for port in service.spec.ports
