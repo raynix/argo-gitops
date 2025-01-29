@@ -4,8 +4,10 @@ gateway:
 wordpress:
   - name: dote
     domain: dote.blog
+    namespace: wordpress-dote
   - name: raynix
     domain: raynix.info
+    namespace: wordpress-raynix
 
 postiz:
   - name: postiz
@@ -21,7 +23,6 @@ app:
     path: .kustomize
     repoURL: https://github.com/raynix/word-squad.git
   - name: argocd
-    namespace: argocd
     domain: argo.awes.one
   - name: loki-stack
     namespace: loki
@@ -31,16 +32,13 @@ app:
     path: mastodon/awes.one
     domain: awes.one
   - name: bay-leaves
-    namespace: bay-leaves
     path: .
     repoURL: https://github.com/raynix/bay-leaves.git
   - name: rusty-sonar
-    namespace: rusty-sonar
     path: .kustomize/raynix
     repoURL: https://github.com/raynix/rusty-sonar.git
   - name: yopass
     domain: yopass.awes.one
-    namespace: yopass
 
 component:
   - name: reflector
@@ -50,11 +48,8 @@ component:
   - name: gateway-api
     namespace: kube-system
   - name: mysqld-exporter
-    namespace: mysqld-exporter
   - name: cert-manager
-    namespace: cert-manager
 
 httpbin:
   - name: httpbin
-    namespace: httpbin
     domain: httpbin.awes.one

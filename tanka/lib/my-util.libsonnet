@@ -21,6 +21,8 @@ local k = import 'k.libsonnet';
       std.member(['gateway', 'httpbin', 'postiz', 'wordpress'], app.type),
     local app_path =
       this.traverse(app, ['path'], if is_tanka then 'tanka' else app.name),
+    local app_ns =
+      this.traverse(app, ['namespace'], app.name),
     apiVersion: 'argoproj.io/v1alpha1',
     kind: 'Application',
     metadata: {
@@ -29,7 +31,7 @@ local k = import 'k.libsonnet';
     },
     spec: {
       destination: {
-        namespace: if std.objectHas(app, 'namespace') then app.namespace else '%s-%s' % [app.type, app.name],
+        namespace: app_ns,
         server: 'https://kubernetes.default.svc',
       },
       project: 'default',
