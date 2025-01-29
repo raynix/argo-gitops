@@ -107,4 +107,6 @@ function(name='postiz') {
   redis_service: k.util.serviceFor($.redis_deploy),
 
   http_route: myutil.http_route($.service, $._config.host, 'kubernetes-gateway'),
+
+  sealed_secret: import 'ss.json',
 }
