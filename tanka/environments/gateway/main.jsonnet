@@ -1,7 +1,13 @@
 local tk = import 'tanka-util/main.libsonnet';
-local sites = std.parseYaml(importstr '../apps.yaml');
 local domains = std.parseYaml(importstr '../domains.yaml');
 local util = import 'my-util.libsonnet';
+local manifests = std.parseYaml(importstr '../apps.yaml');
+local sites = [
+  i { type: k }
+  for k in std.objectFields(manifests)
+  for i in manifests[k]
+  if std.objectHas(i, 'domain')
+];
 
 function(name='') {
   data:: {
