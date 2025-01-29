@@ -1,5 +1,6 @@
 gateway:
   - name: gateway
+    namespace: istio-system
 
 wordpress:
   - name: dote
