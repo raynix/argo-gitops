@@ -4,6 +4,8 @@ namespace: argocd
 
 resources:
   - upstream.yaml
+  - projects.yaml
+  - http-routes.yaml
 
 configMapGenerator:
   - files:

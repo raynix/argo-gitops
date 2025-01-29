@@ -9,6 +9,7 @@ function(name='') {
     for domain in domains
   } + {
     gateway: util.gateway(domains, sites),
+    istio: import 'istio.json',
   },
 
   env:: tk.environment.new(
