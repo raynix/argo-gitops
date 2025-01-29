@@ -22,11 +22,9 @@ app:
     repoURL: https://github.com/raynix/word-squad.git
   - name: argocd
     namespace: argocd
-    path: argocd
     domain: argo.awes.one
   - name: loki-stack
     namespace: loki
-    path: loki-stack
     domain: grafana.awes.one
   - name: mastodon-awes-one
     namespace: mastodon-awes-one
@@ -42,25 +40,19 @@ app:
     repoURL: https://github.com/raynix/rusty-sonar.git
   - name: yopass
     domain: yopass.awes.one
-    path: yopass
     namespace: yopass
 
 component:
   - name: reflector
     namespace: kube-system
-    path: reflector
   - name: metrics-server
     namespace: kube-system
-    path: metrics-server
   - name: gateway-api
     namespace: kube-system
-    path: gateway-api
   - name: mysqld-exporter
     namespace: mysqld-exporter
-    path: mysqld-exporter
   - name: cert-manager
     namespace: cert-manager
-    path: cert-manager
 
 httpbin:
   - name: httpbin

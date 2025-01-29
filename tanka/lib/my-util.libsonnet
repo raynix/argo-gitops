@@ -17,6 +17,10 @@ local k = import 'k.libsonnet';
       default,
 
   argocd_application(app): {
+    local is_tanka =
+      std.member(['gateway', 'httpbin', 'postiz', 'wordpress'], app.type),
+    local app_path =
+      this.traverse(app, ['path'], if is_tanka then 'tanka' else app.name),
     apiVersion: 'argoproj.io/v1alpha1',
     kind: 'Application',
     metadata: {
@@ -30,10 +34,10 @@ local k = import 'k.libsonnet';
       },
       project: 'default',
       source: {
-        path: this.traverse(app, ['path'], 'tanka'),
+        path: app_path,
         repoURL: this.traverse(app, ['repoURL'], 'https://github.com/raynix/argo-gitops.git'),
         targetRevision: 'HEAD',
-        [if !std.objectHas(app, 'path') then 'plugin']: {
+        [if is_tanka then 'plugin']: {
           env: [
             { name: 'TK_ENV', value: app.type },
             { name: 'TK_TLA', value: 'name=%s' % [app.name] },
