@@ -19,6 +19,7 @@ local k = import 'k.libsonnet';
   argocd_application(app): {
     local is_tanka =
       std.member(['gateway', 'httpbin', 'postiz', 'wordpress'], app.type),
+    local is_helm = app.type == 'helm',
     local app_path =
       this.traverse(app, ['path'], if is_tanka then 'tanka' else app.name),
     local app_ns =
@@ -36,14 +37,18 @@ local k = import 'k.libsonnet';
       },
       project: 'default',
       source: {
-        path: app_path,
+        [if !is_helm || std.objectHas(app, 'path') then 'path']: app_path,
+        [if is_helm && std.objectHas(app, 'chart') then 'chart']: app.chart,
         repoURL: this.traverse(app, ['repoURL'], 'https://github.com/raynix/argo-gitops.git'),
-        targetRevision: 'HEAD',
+        targetRevision: this.traverse(app, ['targetRevision'], 'HEAD'),
         [if is_tanka then 'plugin']: {
           env: [
             { name: 'TK_ENV', value: app.type },
             { name: 'TK_TLA', value: 'name=%s' % [app.name] },
           ],
+        },
+        [if is_helm && std.objectHas(app, 'values') then 'helm']: {
+          values: app.values,
         },
       },
       syncPolicy: {
