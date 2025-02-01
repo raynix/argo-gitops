@@ -55,7 +55,7 @@ httpbin:
   - name: httpbin
     domain: httpbin.awes.one
 
-helms:
+helm:
   - name: csi-driver-nfs
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
     chart: csi-driver-nfs
