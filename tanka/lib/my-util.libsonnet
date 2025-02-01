@@ -47,8 +47,9 @@ local k = import 'k.libsonnet';
             { name: 'TK_TLA', value: 'name=%s' % [app.name] },
           ],
         },
-        [if is_helm && std.objectHas(app, 'values') then 'helm']: {
-          values: app.values,
+        [if is_helm then 'helm']: {
+          releaseName: this.traverse(app, ['releaseName'], app.name),
+          values: this.traverse(app, ['values'], ''),
         },
       },
       syncPolicy: {
