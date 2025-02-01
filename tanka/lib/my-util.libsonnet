@@ -49,7 +49,7 @@ local k = import 'k.libsonnet';
         },
         [if is_helm then 'helm']: {
           releaseName: this.traverse(app, ['releaseName'], app.name),
-          values: this.traverse(app, ['values'], ''),
+          [if std.objectHas(app, 'values') then 'values']: app.values,
         },
       },
       syncPolicy: {
