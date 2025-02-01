@@ -1,14 +1,10 @@
 local util = import 'my-util.libsonnet';
 local tk = import 'tanka-util/main.libsonnet';
 local manifests = std.parseYaml(importstr '../apps.yaml');
-local helms = std.parseYaml(importstr '../helms.yaml');
 local apps = [
   i { type: k }
   for k in std.objectFields(manifests)
   for i in manifests[k]
-] + [
-  i { type: 'helm' }
-  for i in helms
 ];
 
 function(name) {
