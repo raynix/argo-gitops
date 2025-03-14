@@ -15,8 +15,8 @@ resources:
 
 images:
   - name: ghcr.io/mastodon/mastodon
-    newTag: v4.3.1
+    newTag: v4.3.6
   - name: ghcr.io/mastodon/mastodon-streaming
-    newTag: v4.3.1
+    newTag: v4.3.6
   - name: ghcr.io/raynix/backup
     newTag: v0.38
