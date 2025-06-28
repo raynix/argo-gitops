@@ -90,7 +90,7 @@ helm:
   - name: sail-operator
     path: chart
     repoURL: https://github.com/istio-ecosystem/sail-operator
-    targetRevision: 0.2.0
+    targetRevision: 1.26.2
 
   - name: sealed-secrets
     path: helm/sealed-secrets
