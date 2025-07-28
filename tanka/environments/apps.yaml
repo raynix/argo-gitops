@@ -49,13 +49,22 @@ component:
   - name: gateway-api
     namespace: kube-system
   - name: mysqld-exporter
-  - name: cert-manager
+  - name: cert-manager-config
 
 httpbin:
   - name: httpbin
     domain: httpbin.awes.one
 
 helm:
+  - name: cert-manager
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: v1.18.2
+    namespace: cert-manager
+    values: |
+      crds:
+        enabled: true
+
   - name: csi-driver-nfs
     repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
     chart: csi-driver-nfs
