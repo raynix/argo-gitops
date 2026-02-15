@@ -74,6 +74,10 @@ spec:
               static_configs:
                 - targets:
                   - 192.168.1.92:9100
+            - job_name: host_router
+              static_configs:
+                - targets:
+                  - 192.168.1.254:9100
           server:
             persistentVolume:
               enabled: true
