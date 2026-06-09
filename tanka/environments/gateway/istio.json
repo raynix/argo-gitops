@@ -6,7 +6,7 @@
       "name": "default"
     },
     "spec": {
-      "version": "v1.26.1",
+      "version": "v1.30.0",
       "namespace": "istio-system",
       "updateStrategy": {
         "type": "InPlace",
