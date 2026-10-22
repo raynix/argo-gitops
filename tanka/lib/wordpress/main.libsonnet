@@ -5,7 +5,7 @@ local k = import 'ksonnet-util/kausal.libsonnet';
     name: 'wp',
     replicas: 2,
     history: 3,
-    image: 'wordpress:php8.1-fpm-alpine',
+    image: 'wordpress:php8.4-fpm-alpine',
     nginx: 'nginx:1.22.1',
     redis: 'redis:6.2.8-alpine3.17',
     backup: 'ghcr.io/raynix/backup:v0.37',
